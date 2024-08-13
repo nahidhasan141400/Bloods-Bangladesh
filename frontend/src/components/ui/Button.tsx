@@ -1,12 +1,22 @@
-import React from 'react'
+import React from 'react';
+
 interface IButton {
     className?: string;
     children: string;
-}
-const Button = ({className,children}:IButton) => {
-  return (
-    <button className={`${className} btn bg-primary hover:bg-secondary text-white`}>{children}</button>
-  )
+    type?: "button" | "submit" | "reset";
+    [key: string]: any; 
 }
 
-export default Button
+const Button = ({ className, children, type = "button", ...rest }: IButton) => {
+    return (
+        <button
+            type={type} 
+            {...rest}
+            className={`${className} btn bg-primary hover:bg-secondary text-white`}
+        >
+            {children}
+        </button>
+    );
+}
+
+export default Button;
