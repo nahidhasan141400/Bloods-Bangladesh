@@ -1,6 +1,8 @@
+import { db } from "@/database";
 import { errorCreate } from "@/middleware/errorHandler";
 import { UserService } from "@/service/User/User.service";
 import SendEmail from "@/utility/email/Connection";
+import { compare } from "@/utility/encryption";
 import generateOTP from "@/utility/otp";
 
 export const UserController = {
@@ -61,6 +63,30 @@ export const UserController = {
         return await UserService.LoginCookie(res, User);
       } else {
         throw errorCreate(401, "Otp is Not valid");
+      }
+    } catch (error) {
+      next(error);
+    }
+  },
+  async login(req, res, next) {
+    try {
+      const { email, password } = req.body;
+      const User = await db.User.unscoped().findOne({
+        where: {
+          email: email,
+        },
+      });
+
+      if (!User) {
+        throw errorCreate(401, "Invalid information");
+      }
+      const hash = User.toJSON().password;
+      const Comparer = compare(password, hash);
+
+      if (Comparer) {
+        UserService.LoginCookie(res, User);
+      } else {
+        throw errorCreate(401, "Invalid Credentials");
       }
     } catch (error) {
       next(error);
