@@ -9,36 +9,36 @@ const SearchDonor = () => {
 
         <form className="grid grid-cols-4 my-7 text-gray-100 gap-5">
           <select className="select select-bordered w-full max-w-xs bg-accent">
-            <option disabled selected>
+            <option value="value" disabled selected>
               Normal
             </option>
-            <option>Normal Apple</option>
-            <option>Normal Orange</option>
-            <option>Normal Tomato</option>
+            <option value="value">Normal Apple</option>
+            <option value="value">Normal Orange</option>
+            <option value="value">Normal Tomato</option>
           </select>
           <select className="select select-bordered w-full max-w-xs bg-accent">
-            <option disabled selected>
+            <option value="value" disabled selected>
               Normal
             </option>
-            <option>Normal Apple</option>
-            <option>Normal Orange</option>
-            <option>Normal Tomato</option>
+            <option value="value">Normal Apple</option>
+            <option value="value">Normal Orange</option>
+            <option value="value">Normal Tomato</option>
           </select>
           <select className="select select-bordered w-full max-w-xs bg-accent">
-            <option disabled selected>
+            <option value="value" disabled selected>
               Normal
             </option>
-            <option>Normal Apple</option>
-            <option>Normal Orange</option>
-            <option>Normal Tomato</option>
+            <option value="value">Normal Apple</option>
+            <option value="value">Normal Orange</option>
+            <option value="value">Normal Tomato</option>
           </select>
           <select className="select select-bordered w-full max-w-xs bg-accent">
-            <option disabled selected>
+            <option value="value" disabled selected>
               Normal
             </option>
-            <option>Normal Apple</option>
-            <option>Normal Orange</option>
-            <option>Normal Tomato</option>
+            <option value="value">Normal Apple</option>
+            <option value="value">Normal Orange</option>
+            <option value="value">Normal Tomato</option>
           </select>
         </form>
 <div className="text-center">
