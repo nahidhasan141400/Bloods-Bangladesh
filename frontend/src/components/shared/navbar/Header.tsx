@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 const Header = () => {
   return (
     <header className="w-full relative">
@@ -33,9 +35,11 @@ const Header = () => {
             </ul>
           </details>
           {/* cta */}
-          <button className="btn btn-primary text-white font-bold ">
-            Registration Now
-          </button>
+          <Link href={"/register"}>
+            <button className="btn btn-primary text-white font-bold ">
+              Registration Now
+            </button>
+          </Link>
         </div>
       </div>
     </header>

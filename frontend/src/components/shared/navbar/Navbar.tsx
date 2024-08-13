@@ -1,14 +1,19 @@
 /* eslint-disable @next/next/no-img-element */
 import Button from "@/components/ui/Button";
 import Container from "@/components/ui/Container";
+import Link from "next/link";
+import { useRouter } from "next/router";
 
 const Navbar = () => {
+  const {pathname} = useRouter();
   return (
     <header className="w-full relative container py-3 md:py-5 mx-auto">
       <div className="w-full relative p-3 flex justify-between items-center container mx-auto ">
-        <div className="hidden md:block text-2xl font-bold text-primary">
+        <Link href={"/"}>
+        <h1 className="hidden md:block text-2xl font-bold text-primary">
           BLOODSBD.COM
-        </div>
+        </h1>
+        </Link>
         {/* right site of the website */}
         <div className="flex w-full justify-between md:justify-end items-center gap-4">
           {/* selected country */}
@@ -37,9 +42,17 @@ const Navbar = () => {
             </ul>
           </details>
           {/* cta */}
+         {
+          pathname ==="/register" ?  <Link href={"/login"}>
           <button className="btn btn-primary text-white font-bold ">
-            Registration Now
+            Login Now
           </button>
+        </Link> :  <Link href={"/register"}>
+            <button className="btn btn-primary text-white font-bold ">
+              Registration Now
+            </button>
+          </Link>
+         }
         </div>
       </div>
     </header>
