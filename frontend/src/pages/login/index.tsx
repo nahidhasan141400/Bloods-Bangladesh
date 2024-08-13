@@ -34,7 +34,7 @@ const Login = () => {
               className="input input-bordered w-full"
             />
           </div>
-          <Button className="w-full">Register</Button>
+          <Button className="w-full">Login</Button>
 
           <div className="flex items-center text-xl font-medium gap-5">
             <div className="w-full h-[2px] bg-primary">
