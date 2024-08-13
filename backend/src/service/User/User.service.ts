@@ -3,6 +3,8 @@ import { db } from "@/database";
 export const UserService = {
   // crete user
   async CreateUser(data: {
+    session: string;
+    status: "active" | "deactivate" | "un-verify";
     photo?: string;
     phone?: string;
     password: string;
@@ -16,6 +18,8 @@ export const UserService = {
         password: data.password,
         phone: data.phone,
         photo: data.photo,
+        status: data.status,
+        session: data.session,
       });
     } catch (error) {
       throw error;
@@ -42,6 +46,7 @@ export const UserService = {
           email: email,
         },
       });
+      return User;
     } catch (error) {
       throw error;
     }

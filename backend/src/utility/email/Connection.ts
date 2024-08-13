@@ -1,8 +1,11 @@
+import { ENV } from "@/config/env";
 import nodemailer from "nodemailer";
-const MAIL_HOST = "us3.smtp.mailhostbox.com";
-const MAIL_PORT = 587;
-const MAIL_USER = "info@asthatrip.com";
-const MAIL_PASS = "swYBUtS8";
+
+const MAIL_HOST = ENV.MAIL_HOST;
+const MAIL_PORT = ENV.MAIL_PORT;
+const MAIL_USER = ENV.MAIL_USER;
+const MAIL_PASS = ENV.MAIL_PASS;
+
 const transporter = nodemailer.createTransport({
   host: MAIL_HOST,
   port: MAIL_PORT,
@@ -36,4 +39,4 @@ async function SendEmail({
     return { send: false, err: error, message: error.message };
   }
 }
-module.exports = SendEmail;
+export default SendEmail;
