@@ -1,10 +1,9 @@
-import { user } from "@/interfaces/User";
-import AuthService from "@/service/auth/auth.service";
+import { UserService } from "@/service/User/User.service";
 
 const IsUser = async (req, res, next) => {
   try {
-    const { sort } = req.cookies;
-    const User = await AuthService.CookieValidator(sort);
+    const { sort, log } = req.cookies;
+    const User = await UserService.CookieValidator(sort, log);
     const UserJson = User.toJSON();
     req.user = UserJson;
     next();

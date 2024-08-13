@@ -48,4 +48,22 @@ export const UserController = {
       next(error);
     }
   },
+  async OtpValidation(req, res, next) {
+    try {
+      const { email, otp } = req.body;
+      const User = await UserService.GetUSerByEmail(email);
+      if (!User) {
+        throw errorCreate(404, "User not found ");
+      }
+
+      if (otp === User.toJSON().session) {
+        // login
+        return await UserService.LoginCookie(res, User);
+      } else {
+        throw errorCreate(401, "Otp is Not valid");
+      }
+    } catch (error) {
+      next(error);
+    }
+  },
 };
