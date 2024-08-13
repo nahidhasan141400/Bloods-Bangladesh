@@ -22,6 +22,10 @@ export function configureEnv() {
     STORE_SANDBOX_SSL: bool({ default: false }),
     STORE_PASSWORD_SSL: str(),
     STORE_ID_SSL: str(),
+    MAIL_HOST: str(),
+    MAIL_PORT: port(),
+    MAIL_USER: str(),
+    MAIL_PASS: str(),
   });
 }
 

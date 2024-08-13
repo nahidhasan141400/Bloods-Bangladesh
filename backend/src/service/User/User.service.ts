@@ -1,8 +1,15 @@
 import { db } from "@/database";
+import { v4 as uuidv4 } from "uuid";
+import jwt from "jsonwebtoken";
+import { ENV } from "@/config/env";
+import cookie from "cookie";
+import { errorCreate } from "@/middleware/errorHandler";
 
 export const UserService = {
   // crete user
   async CreateUser(data: {
+    session: string;
+    status: "active" | "deactivate" | "un-verify";
     photo?: string;
     phone?: string;
     password: string;
@@ -16,6 +23,8 @@ export const UserService = {
         password: data.password,
         phone: data.phone,
         photo: data.photo,
+        status: data.status,
+        session: data.session,
       });
     } catch (error) {
       throw error;
@@ -42,6 +51,86 @@ export const UserService = {
           email: email,
         },
       });
+      return User;
+    } catch (error) {
+      throw error;
+    }
+  },
+  // cookey login
+
+  async LoginCookie(res, user) {
+    try {
+      const session = await uuidv4();
+
+      await user.update({
+        session: session,
+      });
+
+      const token = await jwt.sign(
+        {
+          name: user.toJSON().name,
+          user: user.toJSON().id,
+          session: session,
+        },
+        ENV.SECRET_KEY,
+        {
+          expiresIn: "30d",
+        }
+      );
+
+      res.setHeader("Set-Cookie", [
+        cookie.serialize("sort", token, {
+          maxAge: 1 * 24 * 60 * 60,
+          sameSite: "strict",
+          path: "/",
+          httpOnly: true,
+        }),
+        cookie.serialize("log", session, {
+          maxAge: 1 * 24 * 60 * 60,
+          sameSite: "strict",
+          path: "/",
+          httpOnly: true,
+        }),
+      ]);
+
+      res.send({ login: true });
+    } catch (error) {
+      throw error;
+    }
+  },
+  async CookieValidator(sort, log) {
+    try {
+      let userDecode: {
+        name: string;
+        user: string;
+        session: string;
+      } | null;
+      // validate cookie
+      try {
+        userDecode = jwt.verify(sort, ENV.SECRET_KEY) as {
+          name: string;
+          user: string;
+          session: string;
+        };
+      } catch (error) {
+        throw errorCreate(401, "Invalid User please login");
+      }
+
+      const User = await db.User.findOne({
+        where: {
+          id: userDecode.user,
+        },
+      });
+
+      if (!User) {
+        throw errorCreate(401, "Invalid User Please login");
+      }
+
+      if (User.toJSON().session === log) {
+        throw errorCreate(401, "Invalid User Please login");
+      }
+
+      return User;
     } catch (error) {
       throw error;
     }
