@@ -26,6 +26,7 @@ export const UserService = {
         status: data.status,
         session: data.session,
       });
+      return NewUser;
     } catch (error) {
       throw error;
     }
@@ -58,7 +59,7 @@ export const UserService = {
   },
   // cookey login
 
-  async LoginCookie(res, user) {
+  async LoginCookie(res, user, send = true) {
     try {
       const session = await uuidv4();
 
@@ -92,8 +93,10 @@ export const UserService = {
           httpOnly: true,
         }),
       ]);
-
-      res.send({ login: true });
+      if (send) {
+        return res.send({ login: true });
+      }
+      return;
     } catch (error) {
       throw error;
     }
