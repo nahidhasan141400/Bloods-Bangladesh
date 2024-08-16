@@ -11,7 +11,8 @@ export const UserController = {
     try {
       const { email, name, password } = req.body;
       const OTP = generateOTP();
-
+      console.log("🚀 ~ CreateUser ~ OTP:", OTP)
+    
       // check user
       const ExistUser = await UserService.GetUSerByEmail(email);
       if (ExistUser) {
