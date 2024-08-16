@@ -1,8 +1,16 @@
 import Button from "@/components/ui/Button";
 import Image from "next/image";
-import React from "react";
+import React, { useState } from "react";
+import { useForm } from "react-hook-form";
 
 const Register = () => {
+  const {register,handleSubmit} = useForm();
+  const onSubmit = (data:any) => {
+    if(data?.password != data?.confirmPassword){
+      alert("Password not match")
+    }
+    console.log(data)
+  }
   return (
     <section className="mb-20 mt-10">
       <div className="max-w-md w-full rounded-lg mx-auto text-white p-1 bg-primary ">
@@ -17,10 +25,11 @@ const Register = () => {
       </div>
 
       <div className="max-w-4xl mx-auto mt-5 p-5 bg-gray-50 border rounded-2xl flex justify-center shadow-xl">
-        <form className="max-w-[500px] my-8 w-full flex flex-col gap-5">
+        <form onSubmit={handleSubmit(onSubmit)} className="max-w-[500px] my-8 w-full flex flex-col gap-5">
           <div className="flex gap-2 w-full flex-col">
             <label className="text-gray-600 font-medium">Your Name</label>
             <input
+            {...register("username",{required: true})}
               type="text"
               placeholder="Type here"
               className="input input-bordered w-full"
@@ -29,6 +38,7 @@ const Register = () => {
           <div className="flex gap-2 w-full flex-col">
             <label className="text-gray-600 font-medium">Your Email</label>
             <input
+            {...register("email",{required: true})}
               type="email"
               placeholder="Type here"
               className="input input-bordered w-full"
@@ -37,6 +47,7 @@ const Register = () => {
           <div className="flex gap-2 w-full flex-col">
             <label className="text-gray-600 font-medium">Your Password</label>
             <input
+            {...register("password",{required: true})}
               type="password"
               placeholder="Type here"
               className="input input-bordered w-full"
@@ -45,12 +56,13 @@ const Register = () => {
           <div className="flex gap-2 w-full flex-col">
             <label className="text-gray-600 font-medium">Confirm Password</label>
             <input
-              type="text"
+            {...register("confirmPassword",{required: true})}
+              type="password"
               placeholder="Type here"
               className="input input-bordered w-full"
             />
           </div>
-          <Button className="w-full">Register</Button>
+          <Button type="submit" className="w-full">Register</Button>
 
           <div className="flex items-center text-xl font-medium gap-5">
             <div className="w-full h-[2px] bg-primary">
