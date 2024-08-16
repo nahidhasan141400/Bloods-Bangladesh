@@ -1,7 +1,7 @@
 import Button from "@/components/ui/Button";
 import { useRegisterMutation } from "@/redux/api/authApi/authApi";
 import Image from "next/image";
-import React, { useState } from "react";
+import { redirect } from "next/navigation";
 import { useForm } from "react-hook-form";
 
 const Register = () => {
@@ -18,11 +18,11 @@ const Register = () => {
         password: data?.password,
       });
       if ("errors" in res) {
-        throw new Error("Registration Failed!");
+        console.log("Something went wrong!");
       }
-      console.log(res);
+      redirect("/");
     } catch (err) {
-      throw new Error("Something went wrong!");
+      console.log("Something went wrong!");
     }
   };
   return (

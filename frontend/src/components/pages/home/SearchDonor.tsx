@@ -8,42 +8,54 @@ const SearchDonor = () => {
         <h1 className="text-3xl font-semibold text-center">Search a Donor</h1>
 
         <form className="grid grid-cols-4 my-7 text-gray-100 gap-5">
-          <select className="select select-bordered w-full max-w-xs bg-accent">
-            <option value="value" disabled selected>
+          <select
+            className="select select-bordered w-full max-w-xs bg-accent"
+            defaultValue=""
+          >
+            <option value="" disabled>
               Normal
             </option>
-            <option value="value">Normal Apple</option>
-            <option value="value">Normal Orange</option>
-            <option value="value">Normal Tomato</option>
+            <option value="apple">Normal Apple</option>
+            <option value="orange">Normal Orange</option>
+            <option value="tomato">Normal Tomato</option>
           </select>
-          <select className="select select-bordered w-full max-w-xs bg-accent">
-            <option value="value" disabled selected>
+          <select
+            className="select select-bordered w-full max-w-xs bg-accent"
+            defaultValue=""
+          >
+            <option value="" disabled>
               Normal
             </option>
-            <option value="value">Normal Apple</option>
-            <option value="value">Normal Orange</option>
-            <option value="value">Normal Tomato</option>
+            <option value="apple">Normal Apple</option>
+            <option value="orange">Normal Orange</option>
+            <option value="tomato">Normal Tomato</option>
           </select>
-          <select className="select select-bordered w-full max-w-xs bg-accent">
-            <option value="value" disabled selected>
+          <select
+            className="select select-bordered w-full max-w-xs bg-accent"
+            defaultValue=""
+          >
+            <option value="" disabled>
               Normal
             </option>
-            <option value="value">Normal Apple</option>
-            <option value="value">Normal Orange</option>
-            <option value="value">Normal Tomato</option>
+            <option value="apple">Normal Apple</option>
+            <option value="orange">Normal Orange</option>
+            <option value="tomato">Normal Tomato</option>
           </select>
-          <select className="select select-bordered w-full max-w-xs bg-accent">
-            <option value="value" disabled selected>
+          <select
+            className="select select-bordered w-full max-w-xs bg-accent"
+            defaultValue=""
+          >
+            <option value="" disabled>
               Normal
             </option>
-            <option value="value">Normal Apple</option>
-            <option value="value">Normal Orange</option>
-            <option value="value">Normal Tomato</option>
+            <option value="apple">Normal Apple</option>
+            <option value="orange">Normal Orange</option>
+            <option value="tomato">Normal Tomato</option>
           </select>
         </form>
-<div className="text-center">
-        <Button className="px-16 text-xl bg-accent ">Donor</Button>
-</div>
+        <div className="text-center">
+          <Button className="px-16 text-xl bg-accent">Donor</Button>
+        </div>
       </div>
     </div>
   );

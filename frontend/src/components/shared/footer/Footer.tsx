@@ -8,7 +8,7 @@ const Footer = () => {
         <div className="px-5">
           <img
             className="w-fit h-fit object-cover"
-            src="/images/logo/logo.png"
+            src="/images/logo/Logo.png"
             alt="logo"
           />
         </div>
