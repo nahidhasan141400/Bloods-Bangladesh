@@ -1,12 +1,27 @@
 import Button from "@/components/ui/Button";
+import { useLoginMutation } from "@/redux/api/authApi/authApi";
 import Image from "next/image";
 import React from "react";
 import { useForm } from "react-hook-form";
 
 const Login = () => {
+  const [mutation,{isLoading}] = useLoginMutation();
   const {register,handleSubmit} = useForm();
-  const onSubmit = (data:any) => {
+  const onSubmit = async(data:any) => {
     console.log(data);
+    try{  
+      const res = await mutation({
+        email: data?.email,
+        password: data?.password
+      })
+      if("errors" in res){
+        throw new Error("Login Failed!");
+      }
+      console.log(res);
+
+    }catch(err){
+      throw new Error("Something went wrong!");
+    }
   }
   return (
     <section className="mb-20 mt-10">
@@ -41,7 +56,7 @@ const Login = () => {
               className="input input-bordered w-full"
             />
           </div>
-          <Button type="submit" className="w-full">Login</Button>
+          <Button  type="submit"  className="w-full">{isLoading ? "Loading..": "Login"}</Button>
 
           <div className="flex items-center text-xl font-medium gap-5">
             <div className="w-full h-[2px] bg-primary">
