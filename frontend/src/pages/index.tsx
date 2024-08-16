@@ -1,3 +1,4 @@
+import BecomeOurNextHero from "@/components/pages/home/BecomeOurNextHero";
 import Hero from "@/components/pages/home/Hero";
 
 import OurHeros from "@/components/pages/home/OurHeros";
@@ -9,6 +10,7 @@ export default function Home() {
       <Hero />
       <SearchDonor />
       <OurHeros />
+      <BecomeOurNextHero />
     </section>
   );
 }
