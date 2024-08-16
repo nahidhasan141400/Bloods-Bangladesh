@@ -4,6 +4,7 @@ import { Sequelize, HasMany, Transaction } from "sequelize";
 
 import { log } from "console";
 import { UserModel } from "./model/user";
+import { DonorModel } from "./model/donor";
 const LogQuery = false;
 
 const sequelize = new Sequelize({
@@ -37,6 +38,20 @@ const sequelize = new Sequelize({
 sequelize.authenticate();
 // init model
 const User = UserModel(sequelize);
+const Donor = DonorModel(sequelize);
+
+// user - Donor
+User.hasOne(Donor, {
+  foreignKey: "user_id",
+  onDelete: "SET NULL",
+  as: "donor",
+});
+
+Donor.belongsTo(User, {
+  foreignKey: "user_id",
+  onDelete: "SET NULL",
+  as: "user",
+});
 
 export const db = {
   sequelize,
