@@ -8,5 +8,6 @@ const app = MakeRouter.getApp();
 app.post("/registration", UserController.CreateUser);
 app.post("/otp", UserController.OtpValidation);
 app.post("/login", UserController.login);
+app.post("/set-donor", UserController.SetDonor);
 
 export default MakeRouter;

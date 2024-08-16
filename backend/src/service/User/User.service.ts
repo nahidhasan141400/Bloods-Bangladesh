@@ -119,10 +119,16 @@ export const UserService = {
         throw errorCreate(401, "Invalid User please login");
       }
 
-      const User = await db.User.findOne({
+      const User = await db.User.unscoped().findOne({
         where: {
           id: userDecode.user,
         },
+        include: [
+          {
+            model: db.Donor,
+            as: "donor",
+          },
+        ],
       });
 
       if (!User) {

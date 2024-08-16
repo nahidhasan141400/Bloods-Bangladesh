@@ -1,5 +1,6 @@
 import { db } from "@/database";
 import { errorCreate } from "@/middleware/errorHandler";
+import { DonorService } from "@/service/donor/Donor.service";
 import { UserService } from "@/service/User/User.service";
 import SendEmail from "@/utility/email/Connection";
 import { compare } from "@/utility/encryption";
@@ -88,6 +89,39 @@ export const UserController = {
       } else {
         throw errorCreate(401, "Invalid Credentials");
       }
+    } catch (error) {
+      next(error);
+    }
+  },
+  // set donor information
+  async SetDonor(req, res, next) {
+    try {
+      const { body, user } = req;
+      const data = await DonorService.CreateDonor({
+        country: body.country,
+        district: body.district,
+        division: body.division,
+        email: user.email,
+        latitude: body.latitude,
+        longitude: body.longitude,
+        name: user.name,
+        phone: body.phone || user.phone,
+        photo: user.photo,
+        upazila: body.upazila,
+        user_id: user.id,
+      });
+
+      if (!user.phone) {
+        await db.User.update(
+          { phone: body.phone },
+          {
+            where: {
+              id: user.id,
+            },
+          }
+        );
+      }
+      res.send(data);
     } catch (error) {
       next(error);
     }

@@ -56,4 +56,5 @@ Donor.belongsTo(User, {
 export const db = {
   sequelize,
   User,
+  Donor,
 } as const;
