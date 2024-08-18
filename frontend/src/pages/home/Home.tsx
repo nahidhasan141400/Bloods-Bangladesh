@@ -1,9 +1,11 @@
-import { Button } from "antd";
+import HeroSection from "./HeroSection";
+import OurHeros from "./OurHeros";
 
 const Home = () => {
   return (
-    <div className="flex h-screen w-full justify-center items-center">
-      <Button>Click Me</Button>
+    <div >
+      <HeroSection />
+      <OurHeros />
     </div>
   );
 };
