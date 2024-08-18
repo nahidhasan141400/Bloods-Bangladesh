@@ -3,7 +3,7 @@
 const Footer = () => {
   return (
     <footer>
-      <section className="max-w-3xl mx-auto grid grid-cols-4 divide-x-2">
+      <section className="max-w-3xl mx-auto grid xl:grid-cols-4 sm:grid-cols-2 gap-10 xl:gap-0 justify-center sm:justify-start divide-x-2">
         <div className="px-5">
           <img
             className="w-fit h-fit object-cover"
