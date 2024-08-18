@@ -1,5 +1,4 @@
-/* eslint-disable @next/next/no-img-element */
-import Container from "@/components/ui/Container";
+import Container from "../../components/ui/Container";
 
 const OurHeros = () => {
   return (
@@ -12,7 +11,7 @@ const OurHeros = () => {
       <div className="w-[80%] m-auto grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-1 mt-10">
         <div className="flex flex-col items-center">
           <img
-            className="rounded-full object-cover mb-1 size-48"
+            className="rounded-full object-cover mb-1 size-32 md:size-48"
             src="/images/heroImg.webp"
             alt="girl"
           />
@@ -22,7 +21,7 @@ const OurHeros = () => {
 
         <div className=" flex flex-col items-center">
           <img
-            className="rounded-full object-cover mb-1 size-48"
+            className="rounded-full object-cover mb-1 size-32 md:size-48"
             src="/images/heroImg.webp"
             alt="girl"
           />
@@ -32,7 +31,7 @@ const OurHeros = () => {
 
         <div className="flex flex-col items-center">
           <img
-            className="rounded-full object-cover mb-1 size-48"
+            className="rounded-full object-cover mb-1 size-32 md:size-48"
             src="/images/heroImg.webp"
             alt="girl"
           />
@@ -42,7 +41,7 @@ const OurHeros = () => {
 
         <div className="flex flex-col items-center">
           <img
-            className="rounded-full object-cover mb-1 size-48"
+            className="rounded-full object-cover mb-1 size-32 md:size-48"
             src="/images/heroImg.webp"
             alt="girl"
           />
@@ -52,7 +51,7 @@ const OurHeros = () => {
 
         <div className="flex flex-col items-center">
           <img
-            className="rounded-full object-cover mb-1 size-48"
+            className="rounded-full object-cover mb-1 size-32 md:size-48"
             src="/images/heroImg.webp"
             alt="girl"
           />

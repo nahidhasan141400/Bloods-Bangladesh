@@ -1,15 +1,14 @@
-import Image from "next/image";
+import Container from "../../components/ui/Container";
 
-const Hero = () => {
+
+const HeroSection = () => {
   return (
     <div className="w-full relative">
-      <div className="container mx-auto grid grid-cols-1 md:grid-cols-2 ">
+      <Container className="grid grid-cols-1 md:grid-cols-2 ">
         {/* CTA */}
         <div className="w-full flex flex-col justify-center items-center gap-2">
-          <Image
+          <img
             src={"/images/logo.png"}
-            width={300}
-            height={300}
             className="w-40 md:w-60"
             alt="bloods bd logo"
           />
@@ -22,7 +21,7 @@ const Hero = () => {
           <button className="btn text-white btn-primary text-xl font-bold">
             Become A Hero
           </button>
-          <div className="hidden xl:grid grid-cols-3 mt-10 gap-3 w-full px-2 xl:px-14">
+          <div className="hidden xl:grid grid-cols-3 mt-10 justify-center gap-3 w-full">
             <div className="w-full flex flex-col justify-center items-center p-4 gap-3">
               <p className="text-xl md:text-2xl xl:text-2xl 2xl:text-3xl font-bold text-primary">
                 Donner
@@ -47,17 +46,15 @@ const Hero = () => {
         </div>
         {/* image */}
         <div className="w-full px-3 2xl:px-16 pt-8">
-          <Image
+          <img
             src={"/images/hero.png"}
-            width={400}
-            height={500}
             alt="bloods bangladesh"
             className="w-full"
           />
         </div>
-      </div>
+      </Container>
     </div>
   );
 };
 
-export default Hero;
+export default HeroSection;
