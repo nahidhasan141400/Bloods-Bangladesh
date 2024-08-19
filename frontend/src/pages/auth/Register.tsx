@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 /* eslint-disable @typescript-eslint/no-explicit-any */
 const Register = () => {
   const onFinish = (values: any) => {
-    console.log("Received values of form: ", values);
+    console.log(values)
   };
   return (
     <section className="w-full h-screen grid relative grid-cols-1 md:grid-cols-2">
