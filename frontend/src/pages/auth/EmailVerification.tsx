@@ -1,7 +1,15 @@
 import { Button } from "antd";
 import React, { useRef, FormEvent } from "react";
+import { useLocation } from "react-router-dom";
+import { useEmailVerificationMutation } from "../../redux/api/authApi/authApi";
+import { toast } from "sonner";
 
 const EmailVerification: React.FC = () => {
+  const [mutation, { isLoading }] = useEmailVerificationMutation();
+  const location = useLocation();
+  const params = new URLSearchParams(location.search);
+  const email = params.get("email");
+  console.log(email);
   const inputRefs = useRef<(HTMLInputElement | null)[]>([]);
 
   const handleInput = (e: React.FormEvent<HTMLInputElement>, index: number) => {
@@ -18,11 +26,26 @@ const EmailVerification: React.FC = () => {
     }
   };
 
-  const handleSubmit = (e: FormEvent) => {
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     const code = inputRefs.current.map((input) => input?.value).join("");
-    console.log("Entered code:", code);
-    // Handle the submission logic here
+    const data = {
+      opt: code,
+      email: email,
+    };
+
+    try {
+      const res = await mutation(data).unwrap();
+      if ("error" in res) {
+        console.log(res);
+        toast.error("Failed to verify email");
+        return; // stop the function if error occurs
+      }
+      toast.success("Email verified successfully");
+    } catch (err) {
+      console.log(err);
+      toast.error("Something went wrong");
+    }
   };
 
   return (
@@ -48,6 +71,7 @@ const EmailVerification: React.FC = () => {
               ))}
           </div>
           <Button
+            loading={isLoading}
             type="primary"
             block
             size="large"

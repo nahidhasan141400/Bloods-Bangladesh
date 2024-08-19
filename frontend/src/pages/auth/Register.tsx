@@ -10,14 +10,15 @@ const Register = () => {
   const [mutation, { isLoading }] = useRegisterUserMutation();
   const onFinish = async (values: any) => {
     try {
-      const res = await mutation(values);
+      const res = await mutation(values).unwrap();
       if ("error" in res) {
         console.log(res);
         toast.error("Failed to register");
+        return
       }
       console.log(res);
       toast.success("Registration successful");
-      navigate("/auth/email-verification")
+      navigate(`/auth/email-verification?email=${res?.email}`);
     } catch (err) {
       console.log(err);
       toast.error("Failed to register");
