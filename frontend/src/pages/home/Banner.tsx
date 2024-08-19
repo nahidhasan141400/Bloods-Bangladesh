@@ -4,7 +4,7 @@ const Banner = () => {
       <img
         src="/banner.png"
         alt="banner"
-        className="max-w-3xl mx-auto rounded-xl"
+        className="w-full max-w-3xl mx-auto rounded-xl"
       />
     </div>
   );

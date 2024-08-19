@@ -15,7 +15,7 @@ const Navbar = () => {
 
           <div>
             <Select
-              className="w-[200px] "
+              className="w-[170px] "
               defaultValue={"bangladesh"}
               options={[
                 {
