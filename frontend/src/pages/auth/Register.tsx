@@ -1,11 +1,28 @@
 import { Button, Form, Input } from "antd";
 import { LockOutlined, MailOutlined, UserOutlined } from "@ant-design/icons";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useRegisterUserMutation } from "../../redux/api/authApi/authApi";
+import { toast } from "sonner";
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
 const Register = () => {
-  const onFinish = (values: any) => {
-    console.log(values)
+  const navigate = useNavigate();
+  const [mutation, { isLoading }] = useRegisterUserMutation();
+  const onFinish = async (values: any) => {
+    try {
+      const res = await mutation(values).unwrap();
+      if ("error" in res) {
+        console.log(res);
+        toast.error("Failed to register");
+        return
+      }
+      console.log(res);
+      toast.success("Registration successful");
+      navigate(`/auth/email-verification?email=${res?.email}`);
+    } catch (err) {
+      console.log(err);
+      toast.error("Failed to register");
+    }
   };
   return (
     <section className="w-full h-screen grid relative grid-cols-1 md:grid-cols-2">
@@ -58,8 +75,14 @@ const Register = () => {
                 />
               </Form.Item>
               <Form.Item>
-                <Button size="large" block type="primary" htmlType="submit">
-                  Sign up
+                <Button
+                  loading={isLoading}
+                  size="large"
+                  block
+                  type="primary"
+                  htmlType="submit"
+                >
+                  {isLoading ? "Loading..." : "Sign up"}
                 </Button>
                 <p className="mt-1 text-gray-400">
                   you have account then{" "}
