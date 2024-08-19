@@ -8,24 +8,21 @@ const Register = () => {
     console.log("Received values of form: ", values);
   };
   return (
-    <section className="bg-dark_primary flex justify-between h-screen text-white">
-      <div className="flex-1 h-[90%] mt-10">
-        <div className="max-w-md h-full mx-auto flex flex-col justify-between px-3">
-          <div className="flex">
-            <img className="w-[30%]" src="/images/logo/Logo.png" alt="img" />
+    <section className="w-full h-screen grid relative grid-cols-1 md:grid-cols-2">
+      {/* from */}
+      <div className="h-full max-w-xl min-w-[300px] mx-auto">
+        <div className="h-full mx-auto flex flex-col justify-center px-3">
+          <div className="flex w-full flex-col justify-center items-center">
+            <img className="w-[150px]" src="/images/logo/Logo.png" alt="img" />
+
+            <p className="mt-2 ">Login in to Bloods Bangladesh</p>
           </div>
           <div>
-            <h1 className="text-3xl font-medium">Hi there, ....</h1>
-            <p className="text-gray-300 mt-2 text-xl">
-              Get Started with Registration
-            </p>
             <Form layout="vertical" className="mt-8" onFinish={onFinish}>
               <Form.Item
                 name="name"
-                rules={[
-                  { required: true, message: "Please input your name!" },
-                ]}
-                label={<span style={{ color: "white" }}>Full Name</span>}
+                rules={[{ required: true, message: "Please input your name!" }]}
+                label={<span>Full Name</span>}
               >
                 <Input
                   size="large"
@@ -38,7 +35,7 @@ const Register = () => {
                 rules={[
                   { required: true, message: "Please input your Email!" },
                 ]}
-                label={<span style={{ color: "white" }}>Email</span>}
+                label={<span>Email</span>}
               >
                 <Input
                   size="large"
@@ -51,9 +48,9 @@ const Register = () => {
                 rules={[
                   { required: true, message: "Please input your Password!" },
                 ]}
-                label={<span style={{ color: "white" }}>Password</span>}
+                label={<span>Password</span>}
               >
-                <Input
+                <Input.Password
                   size="large"
                   prefix={<LockOutlined />}
                   type="password"
@@ -73,12 +70,12 @@ const Register = () => {
               </Form.Item>
             </Form>
           </div>
-          <p className="text-gray-400 text-center">@mafuz copyright</p>
         </div>
       </div>
-      <div className="flex-1 hidden lg:block">
+      {/* image */}
+      <div className="w-full h-full overflow-hidden hidden md:block">
         <img
-          className="w-full opacity-65 h-full object-cover"
+          className="w-full h-full object-cover"
           src="/images/login/donate.jpeg"
           alt="img"
         />
