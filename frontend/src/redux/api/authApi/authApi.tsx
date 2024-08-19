@@ -7,7 +7,7 @@ export const authApi = createApi({
     registerUser: builder.mutation({
       query: (data) => {
         return {
-          url: "/register",
+          url: "/registration",
           method: "POST",
           body: data,
         };
@@ -25,7 +25,7 @@ export const authApi = createApi({
     emailVerification: builder.mutation({
       query: (data) => {
         return {
-          url: "/verify-email",
+          url: "/otp",
           method: "POST",
           body: data,
         };

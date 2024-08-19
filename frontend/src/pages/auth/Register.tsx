@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 /* eslint-disable @typescript-eslint/no-explicit-any */
 const Register = () => {
   const onFinish = (values: any) => {
-    console.log("Received values of form: ", values);
+    console.log(values)
   };
   return (
     <section className="bg-dark_primary flex justify-between h-screen text-white">
