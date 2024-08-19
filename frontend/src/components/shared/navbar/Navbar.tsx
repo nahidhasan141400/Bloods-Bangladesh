@@ -34,7 +34,7 @@ const Navbar = () => {
             </ul>
           </details>
           {/* cta */}
-          <Link to={"/"}>
+          <Link to={"/auth/register"}>
             <Button  type="primary" danger>
               Registration Now
             </Button>

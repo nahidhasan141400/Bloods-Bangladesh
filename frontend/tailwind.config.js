@@ -13,6 +13,9 @@ export default {
         success: "#00ff00",
         warning: "#fde047",
         error: "#ff0000",
+
+        // mafuz colors 
+        dark_primary: "#131619"
       },
     },
   },
