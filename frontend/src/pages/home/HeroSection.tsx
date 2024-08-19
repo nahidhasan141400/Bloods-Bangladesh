@@ -1,5 +1,6 @@
+import { Button } from "antd";
 import Container from "../../components/ui/Container";
-
+import AnimatedBtn from "./AnimatedBtn";
 
 const HeroSection = () => {
   return (
@@ -18,9 +19,9 @@ const HeroSection = () => {
           <p className="text-lg px-4 md:px-0 text-center md:text-xl">
             Be the Reason Someone Smiles Today Donate Blood and Save Lives.
           </p>
-          <button className="btn text-white btn-primary text-xl font-bold">
-            Become A Hero
-          </button>
+          {/* style button */}
+          <AnimatedBtn />
+
           <div className="hidden xl:grid grid-cols-3 mt-10 justify-center gap-3 w-full">
             <div className="w-full flex flex-col justify-center items-center p-4 gap-3">
               <p className="text-xl md:text-2xl xl:text-2xl 2xl:text-3xl font-bold text-primary">
