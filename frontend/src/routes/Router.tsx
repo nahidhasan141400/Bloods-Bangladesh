@@ -15,7 +15,7 @@ const Router = () => {
         <Route path="/auth">
           <Route path="login" element={<Login />} />
           <Route path="register" element={<Register />} />
-          <Route path="email_verification" element={<EmailVerification />} />
+          <Route path="email-verification" element={<EmailVerification />} />
         </Route>
       </Routes>
     </BrowserRouter>
