@@ -8,65 +8,70 @@ const Login = () => {
     console.log("Received values of form: ", values);
   };
   return (
-    <section className="bg-dark_primary flex-row-reverse flex justify-between h-screen text-white">
-      <div className="flex-1 h-[85%]">
-        <div className="max-w-md h-full mx-auto my-14 flex flex-col justify-between px-3">
-          <div className="flex">
-          <img className="w-[30%]" src="/images/logo/Logo.png" alt="img" />
-          </div>
-          <div>
-            <h1 className="text-3xl font-medium">Hi there, ....</h1>
-            <p className="text-gray-300 mt-2 text-xl">Get Started with Login</p>
-            <Form layout="vertical" className="mt-8" onFinish={onFinish}>
-              <Form.Item
-                name="email"
-                rules={[
-                  { required: true, message: "Please input your Email!" },
-                ]}
-                label={<span style={{ color: "white" }}>Email</span>}
-              >
-                <Input
-                  size="large"
-                  prefix={<MailOutlined />}
-                  placeholder="Email"
-                />
-              </Form.Item>
-              <Form.Item
-                name="password"
-                rules={[
-                  { required: true, message: "Please input your Password!" },
-                ]}
-                label={<span style={{ color: "white" }}>Password</span>}
-              >
-                <Input
-                  size="large"
-                  prefix={<LockOutlined />}
-                  type="password"
-                  placeholder="Password"
-                />
-              </Form.Item>
-              <Form.Item>
-                <Button size="large" block type="primary" htmlType="submit">
-                  Log in
-                </Button>
-                <p className="mt-1 text-gray-400">
-                  you have no account then{" "}
-                  <Link to="/auth/register" className="text-blue-300 underline">
-                    Register now!
-                  </Link>
-                </p>
-              </Form.Item>
-            </Form>
-          </div>
-          <p className="text-gray-400 text-center">@mafuz copyright</p>
-        </div>
-      </div>
-      <div className="flex-1 h-full hidden lg:block">
+    <section className="w-full h-screen grid relative grid-cols-1 md:grid-cols-2">
+      <div className="w-full h-full overflow-hidden hidden md:block">
         <img
-          className="w-full opacity-65 h-full object-cover"
+          className="w-full h-full object-cover"
           src="/images/login/donate.jpeg"
           alt="img"
         />
+      </div>
+
+      <div className=" h-full max-w-xl min-w-[300px] mx-auto ">
+        <div className="flex w-full flex-col justify-center items-center">
+          <img
+            className="w-[250px] pb-5 mt-5"
+            src="/images/logo/Logo.png"
+            alt="img"
+          />
+          <h1 className="text-3xl font-medium">Save Life</h1>
+          <p className="mt-2 ">Login in to Bloods Bangladesh</p>
+        </div>
+        {/* from start */}
+        <div className="w-full relative">
+          <Form layout="vertical" className="mt-8" onFinish={onFinish}>
+            <Form.Item
+              name="email"
+              rules={[{ required: true, message: "Please input your Email!" }]}
+              label={<span>Email</span>}
+            >
+              <Input
+                size="large"
+                prefix={<MailOutlined />}
+                placeholder="Email"
+              />
+            </Form.Item>
+            <Form.Item
+              name="password"
+              rules={[
+                { required: true, message: "Please input your Password!" },
+              ]}
+              label={<span>Password</span>}
+            >
+              <Input.Password
+                size="large"
+                prefix={<LockOutlined />}
+                type="password"
+                placeholder="Password"
+              />
+            </Form.Item>
+            <div className="flex gap-2 flex-col">
+              <Button size="large" block type="primary" htmlType="submit">
+                Log in
+              </Button>
+              <Button size="large" block type="primary" htmlType="submit">
+                Login With Google
+              </Button>
+              <p className="mt-1 ">
+                you have no account then{" "}
+                <Link to="/auth/register" className="text-blue-300 underline">
+                  Register now!
+                </Link>
+              </p>
+            </div>
+          </Form>
+        </div>
+        {/* from end */}
       </div>
     </section>
   );
