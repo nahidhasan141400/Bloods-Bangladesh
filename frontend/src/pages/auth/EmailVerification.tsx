@@ -1,4 +1,4 @@
-import { Button, Card, Input } from "antd";
+import { Alert, Button, Card, Input } from "antd";
 import { useLocation } from "react-router-dom";
 import { useEmailVerificationMutation } from "../../redux/api/authApi/authApi";
 import { toast } from "sonner";
@@ -6,7 +6,8 @@ import { OTPProps } from "antd/es/input/OTP";
 import { useState } from "react";
 
 const EmailVerification: React.FC = () => {
-  const [mutation, { isLoading }] = useEmailVerificationMutation();
+  const [mutation, { isLoading, isError, error }] =
+    useEmailVerificationMutation();
   const [otp, setOpt] = useState("");
   const location = useLocation();
   const params = new URLSearchParams(location.search);
@@ -27,7 +28,7 @@ const EmailVerification: React.FC = () => {
       otp: otp,
       email: email,
     };
-    console.log(data)
+    console.log(data);
 
     try {
       const res = await mutation(data).unwrap();
@@ -50,13 +51,21 @@ const EmailVerification: React.FC = () => {
         <p className="text-gray-600 mt-1 mb-5">
           Enter the code sent to your email
         </p>
-        <div className="flex justify-center">
-        <Input.OTP
-          size="large"
-          length={5}
-          formatter={(str) => str.toUpperCase()}
-          {...sharedProps}
-        />
+        {isError && (
+          <Alert
+            showIcon
+            type="error"
+            // @ts-expect-error skip
+            message={error?.data?.message || "Something is wrong !"}
+          />
+        )}
+        <div className="flex justify-center mt-3">
+          <Input.OTP
+            size="large"
+            length={5}
+            formatter={(str) => str.toUpperCase()}
+            {...sharedProps}
+          />
         </div>
         <Button
           onClick={handleSubmitOtp}
