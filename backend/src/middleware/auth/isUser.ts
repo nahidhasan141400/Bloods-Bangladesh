@@ -3,8 +3,9 @@ import { UserService } from "@/service/User/User.service";
 const IsUser = async (req, res, next) => {
   try {
     const { sort, log } = req.cookies;
+
     const User = await UserService.CookieValidator(sort, log);
-    const UserJson = User.toJSON();
+    const UserJson = User;
     req.user = UserJson;
     next();
   } catch (error) {

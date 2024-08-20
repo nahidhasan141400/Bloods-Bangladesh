@@ -95,13 +95,13 @@ export const UserService = {
       res.setHeader("Set-Cookie", [
         cookie.serialize("sort", token, {
           maxAge: 1 * 24 * 60 * 60,
-          sameSite: "none",
+          sameSite: "strict",
           path: "/",
           httpOnly: true,
         }),
         cookie.serialize("log", session, {
           maxAge: 1 * 24 * 60 * 60,
-          sameSite: "none",
+          sameSite: "strict",
           path: "/",
           httpOnly: true,
         }),
@@ -148,11 +148,15 @@ export const UserService = {
         throw errorCreate(401, "Invalid User Please login");
       }
 
-      if (User.toJSON().session === log) {
+      if (User.toJSON().session !== log) {
         throw errorCreate(401, "Invalid User Please login");
       }
+      const userData = User.toJSON();
 
-      return User;
+      delete userData.session;
+      delete userData.password;
+
+      return userData;
     } catch (error) {
       throw error;
     }
