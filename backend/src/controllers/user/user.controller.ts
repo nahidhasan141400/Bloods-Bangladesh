@@ -11,8 +11,8 @@ export const UserController = {
     try {
       const { email, name, password } = req.body;
       const OTP = generateOTP();
-      console.log("🚀 ~ CreateUser ~ OTP:", OTP)
-    
+      console.log("🚀 ~ CreateUser ~ OTP:", OTP);
+
       // check user
       const ExistUser = await UserService.GetUSerByEmail(email);
       if (ExistUser) {
@@ -55,13 +55,17 @@ export const UserController = {
   async OtpValidation(req, res, next) {
     try {
       const { email, otp } = req.body;
-      const User = await UserService.GetUSerByEmail(email);
+      const User = await UserService.GetUSerByEmailUnscope(email);
       if (!User) {
         throw errorCreate(404, "User not found ");
       }
 
+      console.log("🚀 ~ OtpValidation ~ ", otp, User.toJSON().session);
       if (otp === User.toJSON().session) {
         // login
+        await User.update({
+          status: "active",
+        });
         return await UserService.LoginCookie(res, User);
       } else {
         throw errorCreate(401, "Otp is Not valid");
