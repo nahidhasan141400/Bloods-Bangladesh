@@ -1,13 +1,30 @@
 import { Button, Form, Input } from "antd";
 import { LockOutlined, MailOutlined } from "@ant-design/icons";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { toast } from "sonner";
+import { useLoginUserMutation } from "../../redux/api/authApi/authApi";
 import { LogosGoogleIcon } from "../../components/icons";
 import { proxy } from "../../proxy";
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
 const Login = () => {
-  const onFinish = (values: any) => {
-    console.log("Received values of form: ", values);
+  const navigate = useNavigate();
+  const [mutation, { isLoading }] = useLoginUserMutation();
+  const onFinish = async (values: any) => {
+    try {
+      const res = await mutation(values).unwrap();
+      if ("error" in res) {
+        console.log(res);
+        toast.error("Failed to Login");
+        return;
+      }
+      console.log(res);
+      toast.success("Login successful");
+      navigate("/");
+    } catch (err) {
+      console.log(err);
+      toast.error("Failed to register");
+    }
   };
   return (
     <section className="w-full h-screen grid relative grid-cols-1 md:grid-cols-2">
@@ -58,7 +75,13 @@ const Login = () => {
               />
             </Form.Item>
             <div className="flex gap-2 flex-col">
-              <Button size="large" block type="primary" htmlType="submit">
+              <Button
+                loading={isLoading}
+                size="large"
+                block
+                type="primary"
+                htmlType="submit"
+              >
                 Log in
               </Button>
               <a href={proxy + "/google/login"}>

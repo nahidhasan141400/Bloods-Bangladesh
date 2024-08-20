@@ -14,7 +14,7 @@ const Register = () => {
       if ("error" in res) {
         console.log(res);
         toast.error("Failed to register");
-        return
+        return;
       }
       console.log(res);
       toast.success("Registration successful");
