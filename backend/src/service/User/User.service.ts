@@ -95,13 +95,13 @@ export const UserService = {
       res.setHeader("Set-Cookie", [
         cookie.serialize("sort", token, {
           maxAge: 1 * 24 * 60 * 60,
-          sameSite: "strict",
+          sameSite: "none",
           path: "/",
           httpOnly: true,
         }),
         cookie.serialize("log", session, {
           maxAge: 1 * 24 * 60 * 60,
-          sameSite: "strict",
+          sameSite: "none",
           path: "/",
           httpOnly: true,
         }),
