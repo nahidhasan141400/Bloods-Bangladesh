@@ -57,6 +57,19 @@ export const UserService = {
       throw error;
     }
   },
+  // get User by email
+  async GetUSerByEmailUnscope(email: string) {
+    try {
+      const User = await db.User.unscoped().findOne({
+        where: {
+          email: email,
+        },
+      });
+      return User;
+    } catch (error) {
+      throw error;
+    }
+  },
   // cookey login
 
   async LoginCookie(res, user, send = true) {

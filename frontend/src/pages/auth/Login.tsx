@@ -3,6 +3,8 @@ import { LockOutlined, MailOutlined } from "@ant-design/icons";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "sonner";
 import { useLoginUserMutation } from "../../redux/api/authApi/authApi";
+import { LogosGoogleIcon } from "../../components/icons";
+import { proxy } from "../../proxy";
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
 const Login = () => {
@@ -82,9 +84,20 @@ const Login = () => {
               >
                 Log in
               </Button>
-              <Button size="large" block type="primary" htmlType="submit">
-                Login With Google
-              </Button>
+              <a href={proxy + "/google/login"}>
+                <Button
+                  size="large"
+                  block
+                  type="primary"
+                  htmlType="button"
+                  icon={<LogosGoogleIcon />}
+                  style={{
+                    backgroundColor: "#a35d70",
+                  }}
+                >
+                  Login With Google
+                </Button>
+              </a>
               <p className="mt-1 ">
                 you have no account then{" "}
                 <Link to="/auth/register" className="text-blue-300 underline">

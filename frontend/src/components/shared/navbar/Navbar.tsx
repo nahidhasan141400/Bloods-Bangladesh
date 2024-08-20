@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import Container from "../../ui/Container";
-import { Button } from "antd";
+import { Button, Select } from "antd";
 
 const Navbar = () => {
   return (
@@ -13,11 +13,42 @@ const Navbar = () => {
         <div className="flex w-full justify-between md:justify-end items-center gap-4">
           {/* selected country */}
 
+          <div>
+            <Select
+              className="w-[170px] "
+              defaultValue={"bangladesh"}
+              options={[
+                {
+                  value: "bangladesh",
+                  label: (
+                    <span className="flex items-center gap-2">
+                      {" "}
+                      <img
+                        src="https://flagcdn.com/48x36/bd.png"
+                        className="w-6"
+                      />
+                      <span>Bangladesh</span>
+                    </span>
+                  ),
+                },
+                {
+                  value: "USA",
+                  label: (
+                    <span className="flex items-center gap-2">
+                      {" "}
+                      <img
+                        src="https://flagcdn.com/48x36/us.png"
+                        className="w-6"
+                      />
+                      <span>USA</span>
+                    </span>
+                  ),
+                },
+              ]}
+            />
+          </div>
           <details className="dropdown">
-            <summary className="text-lg font-semibold text-gray-700 cursor-pointer custom-arrow flex gap-2 items-center">
-              <img src="https://flagcdn.com/48x36/bd.png" className="w-6" />
-              <span>Bangladesh</span>
-            </summary>
+            <summary className="text-lg font-semibold text-gray-700 cursor-pointer custom-arrow flex gap-2 items-center"></summary>
             <ul className="menu dropdown-content bg-primary gap-2 rounded-box z-[1] w-52 p-2 shadow">
               <li>
                 <button className="btn glass btn-primary font-bold">
@@ -35,7 +66,7 @@ const Navbar = () => {
           </details>
           {/* cta */}
           <Link to={"/auth/register"}>
-            <Button  type="primary" danger>
+            <Button type="primary" danger>
               Registration Now
             </Button>
           </Link>
