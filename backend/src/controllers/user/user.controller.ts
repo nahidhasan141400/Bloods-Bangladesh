@@ -114,6 +114,10 @@ export const UserController = {
         photo: user.photo,
         upazila: body.upazila,
         user_id: user.id,
+        date_of_barth: body.date_of_barth,
+        address: body.address,
+        gender: body.gender,
+        blood_group: body.blood_group,
       });
 
       if (!user.phone) {
