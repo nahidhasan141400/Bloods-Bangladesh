@@ -46,4 +46,5 @@ export const {
   useRegisterUserMutation,
   useLoginUserMutation,
   useEmailVerificationMutation,
+  useGetUserQuery
 } = authApi;
