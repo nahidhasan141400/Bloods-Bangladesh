@@ -26,6 +26,10 @@ export function configureEnv() {
     MAIL_PORT: port(),
     MAIL_USER: str(),
     MAIL_PASS: str(),
+    // google
+    CLIENT_ID: str(),
+    CLIENT_SECRET: str(),
+    REDIRECT_URIS: str(),
   });
 }
 

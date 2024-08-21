@@ -1,3 +1,4 @@
+import { configureEnv } from "@/config/env";
 import { errorCreate } from "@/middleware/errorHandler";
 import { UserService } from "@/service/User/User.service";
 import { GetGoogleOauthURL } from "@/utility/Google";
@@ -36,8 +37,8 @@ type GoogleAccountInfo = {
 App.get("/google/login", async (req, res, next) => {
   try {
     const url = GetGoogleOauthURL(
-      process.env.REDIRECT_URIS,
-      process.env.CLIENT_ID
+      configureEnv().REDIRECT_URIS,
+      configureEnv().CLIENT_ID
     );
 
     // res.send(url);
@@ -55,9 +56,9 @@ App.get("/api/google/auth", async (req, res, next) => {
 
   const value = {
     code,
-    client_id: process.env.CLIENT_ID,
-    client_secret: process.env.CLIENT_SECRET,
-    redirect_uri: process.env.REDIRECT_URIS,
+    client_id: configureEnv().CLIENT_ID,
+    client_secret: configureEnv().CLIENT_SECRET,
+    redirect_uri: configureEnv().REDIRECT_URIS,
     grant_type: "authorization_code",
   };
 
