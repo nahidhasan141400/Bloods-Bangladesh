@@ -15,6 +15,9 @@ export interface DonorI
   name: string;
   email: string;
   phone: string;
+  date_of_barth: string;
+  gender: "male" | "female" | "others";
+  blood_group: "A+" | "B+" | "O+" | "AB+" | "A-" | "B-" | "O-" | "AB-";
   photo: string;
   country: string;
   division: string;
@@ -22,6 +25,8 @@ export interface DonorI
   upazila: string;
   longitude: string;
   latitude: string;
+  address: string;
+
   status: "active" | "deactivate" | "un-verify";
   organization_id?: ForeignKey<string>;
   user_id?: ForeignKey<string>;
@@ -51,11 +56,24 @@ export function DonorModel(sequelize: Sequelize) {
       allowNull: true,
       type: DataTypes.STRING(255),
     },
-
+    date_of_barth: {
+      allowNull: true,
+      type: DataTypes.DATE,
+    },
     name: {
       type: DataTypes.STRING,
     },
-
+    address: {
+      allowNull: true,
+      type: DataTypes.TEXT("long"),
+    },
+    gender: {
+      type: DataTypes.ENUM("male", "female", "others"),
+    },
+    blood_group: {
+      allowNull: false,
+      type: DataTypes.ENUM("A+", "B+", "O+", "AB+", "A-", "B-", "O-", "AB-"),
+    },
     country: {
       type: DataTypes.STRING,
     },

@@ -1,4 +1,5 @@
 // import { Button } from "antd";
+import { Link } from "react-router-dom";
 import Container from "../../components/ui/Container";
 import AnimatedBtn from "./AnimatedBtn";
 
@@ -20,7 +21,14 @@ const HeroSection = () => {
             Be the Reason Someone Smiles Today Donate Blood and Save Lives.
           </p>
           {/* style button */}
-          <AnimatedBtn />
+          <div className="w-full relative justify-center flex gap-3 flex-col md:flex-row">
+            <Link to={"/auth/register"} className="w-full">
+              <AnimatedBtn text="Become A Hero" />
+            </Link>
+            <Link to={"/search"} className="w-full">
+              <AnimatedBtn text="Search Donor" />
+            </Link>
+          </div>
 
           <div className="hidden xl:grid grid-cols-3 mt-10 justify-center gap-3 w-full">
             <div className="w-full flex flex-col justify-center items-center p-4 gap-3">

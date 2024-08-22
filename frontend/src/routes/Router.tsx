@@ -7,6 +7,8 @@ import Home from "../pages/home/Home";
 import DashboardRoutes from "../pages/dashboard/DashboardRoutes";
 import ProtectedRoute from "./ProtectedRoute";
 import SetInformation from "../pages/dashboard/setInformation/SetInformation";
+import SearchDonor from "../pages/Search/SearchDonor";
+
 
 const Router = () => {
   return (
@@ -14,6 +16,7 @@ const Router = () => {
       <Routes>
         <Route path="/" element={<MainLayout />}>
           <Route index element={<Home />} />
+          <Route path="/search" element={<SearchDonor />} />
         </Route>
         <Route path="/auth">
           <Route path="login" element={<Login />} />
