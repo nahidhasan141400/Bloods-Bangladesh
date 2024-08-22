@@ -58,7 +58,7 @@ const ContactInfo = ({
       initialValues={defaultValues ? defaultValues : " "}
       layout="vertical"
       onFinish={onFinish}
-      className="mx-10 mt-10"
+      className="m-2 md:mx-10  md:mt-10"
     >
       {/* Addressline */}
       <Form.Item
@@ -69,7 +69,7 @@ const ContactInfo = ({
         <Input size="large" placeholder="Enter your address" />
       </Form.Item>
 
-      <div className="grid md:grid-cols-2 gap-4">
+      <div className="grid md:grid-cols-2 md:gap-4">
         {/* Country */}
         <Form.Item
           label="Country"
@@ -144,7 +144,7 @@ const ContactInfo = ({
         </Form.Item>
       </div>
       {/* Submit Button */}
-      <div className="mt-10 mb-5 h-fit gap-1 flex items-center justify-end">
+      <div className="mt-3 md:mt-10 mb-5 h-fit gap-1 flex items-center justify-end">
         
           <Button size="large" type="primary" htmlType="submit">
             Next

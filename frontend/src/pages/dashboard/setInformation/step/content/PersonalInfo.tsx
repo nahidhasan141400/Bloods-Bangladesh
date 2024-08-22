@@ -41,11 +41,11 @@ const PersonalInfo = ({
       layout="vertical"
       onFinish={onFinish}
       onFinishFailed={onFinishFailed}
-      className="mx-10 mt-10"
+      className="m-2 md:mx-10  md:mt-10"
       initialValues={defaultValues ? defaultValues : " "}
     >
       {/* Grid Layout */}
-      <div className="grid md:grid-cols-2 gap-4">
+      <div className="grid md:grid-cols-2 md:gap-4">
         {/* Name */}
         <Form.Item
           label="Name"
@@ -132,7 +132,7 @@ const PersonalInfo = ({
       </div>
 
       {/* Submit Button */}
-      <div className="text-end mt-10 mb-5">
+      <div className="text-end mt-3 md:mt-10 mb-5">
         <Button size="large" type="primary" htmlType="submit">
           Next
         </Button>

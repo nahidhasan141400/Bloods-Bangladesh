@@ -10,7 +10,7 @@ const SetInformation = () => {
   console.log(data);
   return data ? <div>
     <Welcome value={!data?.donor} />
-    <div className="max-w-7xl mx-auto mt-10">
+    <div className="max-w-7xl mx-auto px-1 mt-10">
     <StepsForm />
     </div>
   </div> : <Navigate to={"/auth/login"} />;
