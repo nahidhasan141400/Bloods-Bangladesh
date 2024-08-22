@@ -5,6 +5,10 @@ import { Sequelize, HasMany, Transaction } from "sequelize";
 import { log } from "console";
 import { UserModel } from "./model/user";
 import { DonorModel } from "./model/donor";
+import { CountryI, CountryModel } from "./model/country";
+import { DivisionI, DivisionModel } from "./model/Division";
+import { DistrictI, DistrictModel } from "./model/District";
+import { UpazilaI, UpazilaModel } from "./model/Upazila";
 const LogQuery = false;
 
 const sequelize = new Sequelize({
@@ -39,6 +43,10 @@ sequelize.authenticate();
 // init model
 const User = UserModel(sequelize);
 const Donor = DonorModel(sequelize);
+const Country = CountryModel(sequelize);
+const Division = DivisionModel(sequelize);
+const District = DistrictModel(sequelize);
+const Upazila = UpazilaModel(sequelize);
 
 // user - Donor
 User.hasOne(Donor, {
@@ -53,8 +61,47 @@ Donor.belongsTo(User, {
   as: "user",
 });
 
+// Country < Division
+
+Country.hasMany<CountryI, DivisionI>(Division, {
+  foreignKey: "country_id",
+  as: "divisions",
+  onDelete: "CASCADE",
+});
+
+Division.belongsTo<DivisionI, CountryI>(Country, {
+  foreignKey: "country_id",
+  as: "country",
+  onDelete: "CASCADE",
+});
+// Division < District
+Division.hasMany<DivisionI, DistrictI>(District, {
+  foreignKey: "division_id",
+  as: "district",
+  onDelete: "CASCADE",
+});
+District.belongsTo<DistrictI, DivisionI>(Division, {
+  foreignKey: "division_id",
+  as: "division",
+  onDelete: "CASCADE",
+});
+// Upazila> District
+District.hasMany<DistrictI, UpazilaI>(Upazila, {
+  foreignKey: "district_id",
+  as: "upazila",
+  onDelete: "CASCADE",
+});
+
+Upazila.belongsTo<UpazilaI, DistrictI>(District, {
+  foreignKey: "district_id",
+  as: "district",
+  onDelete: "CASCADE",
+});
+
 export const db = {
   sequelize,
   User,
   Donor,
+  Country,
+  Division,
 } as const;

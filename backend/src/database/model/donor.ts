@@ -74,7 +74,6 @@ export function DonorModel(sequelize: Sequelize) {
       allowNull: false,
       type: DataTypes.ENUM("A+", "B+", "O+", "AB+", "A-", "B-", "O-", "AB-"),
     },
-
     country: {
       type: DataTypes.STRING,
     },
