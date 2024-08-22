@@ -20,7 +20,7 @@ const Login = () => {
       }
       console.log(res);
       toast.success("Login successful");
-      navigate("/");
+      navigate("/dashboard");
     } catch (err) {
       console.log(err);
       toast.error("Failed to register");

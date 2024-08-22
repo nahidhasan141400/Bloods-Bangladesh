@@ -1,11 +1,22 @@
-import { Navigate, Outlet } from "react-router-dom";
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { Navigate } from "react-router-dom";
 import { useGetUserQuery } from "../redux/api/authApi/authApi";
-
-const ProtectedRoute = () => {
+import { FC, ReactNode } from "react";
+import Loading from "../components/Loading/Loading";
+const ProtectedRoute: FC<{ children: ReactNode }> = ({ children }) => {
   const { data, isLoading } = useGetUserQuery(undefined);
-  if (isLoading) return <div>Loading..</div>;
+  if (isLoading) return <Loading />;
   console.log(data);
-  return data ? <Outlet /> : <Navigate to={"/auth/login"} />;
+
+  return data ? (
+    data?.donor ? (
+      <>{children}</>
+    ) : (
+      <Navigate to={"/dashboard/setInfo"} />
+    )
+  ) : (
+    <Navigate to={"/auth/login"} />
+  );
 };
 
 export default ProtectedRoute;

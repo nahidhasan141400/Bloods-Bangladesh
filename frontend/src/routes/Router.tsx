@@ -6,7 +6,9 @@ import MainLayout from "../layouts/MainLayout";
 import Home from "../pages/home/Home";
 import DashboardRoutes from "../pages/dashboard/DashboardRoutes";
 import ProtectedRoute from "./ProtectedRoute";
+import SetInformation from "../pages/dashboard/setInformation/SetInformation";
 import SearchDonor from "../pages/Search/SearchDonor";
+
 
 const Router = () => {
   return (
@@ -21,9 +23,18 @@ const Router = () => {
           <Route path="register" element={<Register />} />
           <Route path="email-verification" element={<EmailVerification />} />
         </Route>
-        <Route element={<ProtectedRoute />}>
-          <Route path="/dashboard/*" element={<DashboardRoutes />} />
-        </Route>
+        <Route
+          path="/dashboard/*"
+          element={
+            <ProtectedRoute>
+              <DashboardRoutes />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/dashboard/setInfo"
+          element={<SetInformation />}
+        />
       </Routes>
     </BrowserRouter>
   );
