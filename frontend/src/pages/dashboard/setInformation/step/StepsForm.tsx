@@ -7,14 +7,14 @@ import ShowFields from "./content/ShowFields";
 const StepsForm: React.FC = () => {
   const [personalData, setPersonalData] = useState();
   const [contactData, setContactData] = useState();
-  console.log(personalData,contactData);
+  console.log(personalData, contactData);
 
   const { token } = theme.useToken();
   const [current, setCurrent] = useState(0);
 
   const steps = [
     {
-      title: "First",
+      title: "Personal Information",
       content: (
         <PersonalInfo
           current={current}
@@ -25,7 +25,7 @@ const StepsForm: React.FC = () => {
       ),
     },
     {
-      title: "Second",
+      title: "Contact Information",
       content: (
         <ContactInfo
           current={current}
@@ -36,7 +36,7 @@ const StepsForm: React.FC = () => {
       ),
     },
     {
-      title: "Last",
+      title: "Review",
       content: <ShowFields />,
     },
   ];

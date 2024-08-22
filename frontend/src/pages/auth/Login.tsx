@@ -92,7 +92,9 @@ const Login = () => {
                   htmlType="button"
                   icon={<LogosGoogleIcon />}
                   style={{
-                    backgroundColor: "#a35d70",
+                    backgroundColor: "#fff",
+                    color: "#000",
+                    borderColor: "#cdcdcd",
                   }}
                 >
                   Login With Google

@@ -1,9 +1,11 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 // import { Button } from "antd";
 import { Link } from "react-router-dom";
 import Container from "../../components/ui/Container";
 import AnimatedBtn from "./AnimatedBtn";
+import { FC } from "react";
 
-const HeroSection = () => {
+const HeroSection: FC<{ user: any }> = ({ user }) => {
   return (
     <div className="w-full relative">
       <Container className="grid grid-cols-1 md:grid-cols-2 ">
@@ -11,7 +13,7 @@ const HeroSection = () => {
         <div className="w-full flex flex-col justify-center items-center gap-2">
           <img
             src={"/images/logo.png"}
-            className="w-40 md:w-60"
+            className="w-52 md:w-60"
             alt="bloods bd logo"
           />
           <h1 className="text-4xl md:text-6xl xl:text-7xl font-extrabold text-primary mt-2 md:mt-0">
@@ -22,9 +24,16 @@ const HeroSection = () => {
           </p>
           {/* style button */}
           <div className="w-full relative justify-center flex gap-3 flex-col md:flex-row">
-            <Link to={"/auth/register"} className="w-full">
-              <AnimatedBtn text="Become A Hero" />
-            </Link>
+            {user ? (
+              <Link to={"/dashboard"} className="w-full">
+                <AnimatedBtn text="Go To Dashboard" />
+              </Link>
+            ) : (
+              <Link to={"/auth/login"} className="w-full">
+                <AnimatedBtn text="Become A Hero" />
+              </Link>
+            )}
+
             <Link to={"/search"} className="w-full">
               <AnimatedBtn text="Search Donor" />
             </Link>

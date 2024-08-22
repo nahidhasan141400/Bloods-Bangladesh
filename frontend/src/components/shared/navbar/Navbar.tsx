@@ -1,8 +1,13 @@
 import { Link } from "react-router-dom";
 import Container from "../../ui/Container";
 import { Button, Select } from "antd";
+import { useGetUserQuery } from "../../../redux/api/authApi/authApi";
 
 const Navbar = () => {
+  const { data, isLoading } = useGetUserQuery({});
+  if (isLoading) {
+    return <></>;
+  }
   return (
     <Container className="w-full relative">
       <div className="w-full relative p-3 flex justify-between items-center container mx-auto ">
@@ -67,11 +72,19 @@ const Navbar = () => {
             </ul>
           </details>
           {/* cta */}
-          <Link to={"/auth/register"}>
-            <Button type="primary" danger>
-              Registration Now
-            </Button>
-          </Link>
+          {data ? (
+            <Link to={"/dashboard"}>
+              <Button type="primary" danger>
+                Dashboard
+              </Button>
+            </Link>
+          ) : (
+            <Link to={"/auth/register"}>
+              <Button type="primary" danger>
+                Registration Now
+              </Button>
+            </Link>
+          )}
         </div>
       </div>
     </Container>
