@@ -6,9 +6,11 @@ const Navbar = () => {
   return (
     <Container className="w-full relative">
       <div className="w-full relative p-3 flex justify-between items-center container mx-auto ">
-        <div className="hidden md:block text-2xl font-bold text-primary">
-          BLOODSBD.COM
-        </div>
+        <Link to={"/"}>
+          <div className="hidden md:block text-2xl font-bold text-primary">
+            BLOODSBD.COM
+          </div>
+        </Link>
         {/* right site of the website */}
         <div className="flex w-full justify-between md:justify-end items-center gap-4">
           {/* selected country */}

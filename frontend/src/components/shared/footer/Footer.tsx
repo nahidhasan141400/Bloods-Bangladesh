@@ -1,4 +1,4 @@
-
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
@@ -11,15 +11,17 @@ const Footer = () => {
             alt="logo"
           />
         </div>
-        <div  className="px-5">
+        <div className="px-5">
           <ul className="flex flex-col gap-2">
-            <li>Home</li>
+            <li>
+              <Link to="/">Home</Link>
+            </li>
             <li>About us</li>
             <li>Organization</li>
             <li>Contact Us</li>
           </ul>
         </div>
-        <div  className="px-5">
+        <div className="px-5">
           <ul className="flex flex-col gap-2">
             <li>Our Facebook Group</li>
             <li>Facebook Page</li>
@@ -35,7 +37,9 @@ const Footer = () => {
           />
         </div>
       </section>
-      <p className="pb-5 pt-10 font-thin text-center">©2024 All Rights Reserved. Bloods Bangladesh</p>
+      <p className="pb-5 pt-10 font-thin text-center">
+        ©2024 All Rights Reserved. Bloods Bangladesh
+      </p>
     </footer>
   );
 };
