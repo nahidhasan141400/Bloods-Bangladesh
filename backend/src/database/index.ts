@@ -104,4 +104,6 @@ export const db = {
   Donor,
   Country,
   Division,
+  District,
+  Upazila,
 } as const;

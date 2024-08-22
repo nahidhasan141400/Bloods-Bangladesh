@@ -36,6 +36,7 @@ export function CountryModel(sequelize: Sequelize) {
     },
     status: {
       type: DataTypes.ENUM("active", "deactivate", "un-verify"),
+      defaultValue: "active",
     },
   });
 }
