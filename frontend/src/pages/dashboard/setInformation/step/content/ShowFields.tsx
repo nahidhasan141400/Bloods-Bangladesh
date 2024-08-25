@@ -1,4 +1,4 @@
-import { Button, Descriptions, DescriptionsProps } from "antd";
+import { Alert, Button, Descriptions, DescriptionsProps } from "antd";
 import { FC } from "react";
 import { AddDonorFromI } from "../../../../../Interface/Interface";
 import { useCerateDonarMutation } from "../../../../../redux/api/donorApi/donorApi";
@@ -17,6 +17,10 @@ const ShowFields: FC<{
     try {
       const res = await Create(data);
       console.log("🚀 ~ handleSubmit ~ res:", res);
+      if ("error" in res) {
+        return;
+      }
+      window.location.href = "/dashboard";
     } catch (error) {
       console.log("🚀 ~ handleSubmit ~ error:", error);
     }
@@ -96,10 +100,17 @@ const ShowFields: FC<{
   ];
   return (
     <div className="md:p-5 p-2 flex justify-center items-center flex-col w-full h-full">
-      <Descriptions title="Donar Info" items={items} />
-      <div>
-        map : {data?.latitude} - {data?.longitude}
-      </div>
+      {CreateOpt.isError && (
+        <Alert
+          showIcon
+          type="error"
+          // @ts-expect-error skip
+          message={CreateOpt.error?.data?.message || "Something is wrong"}
+          closable
+        />
+      )}
+      <Descriptions items={items} />
+
       <div className="mt-3 md:mt-10 mb-5 h-fit w-full gap-1 flex items-center justify-end">
         <Button
           onClick={handleSubmit}

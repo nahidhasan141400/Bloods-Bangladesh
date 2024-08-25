@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
-import { Button, Form, FormProps, Input, message, Select } from "antd";
+import { Button, Card, Form, FormProps, Input, message, Select } from "antd";
 import { MapContainer, Marker, Popup, TileLayer, useMap } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import { districts, divisions, upazilas } from "../../../../../data/stepsData";
@@ -37,11 +37,10 @@ const ContactInfo = ({
     longitude: defaultValues ? defaultValues?.longitude : null,
   });
 
-
-  const position: [number, number] =
+  const position: [number, number] | null =
     location.latitude && location.longitude
       ? [location.latitude, location.longitude]
-      : [51.505, -0.09];
+      : null;
 
   const UpdateMapView = ({ coords }: { coords: [number, number] }) => {
     const map = useMap();
@@ -188,34 +187,39 @@ const ContactInfo = ({
       </div>
       {/* Get Location Button */}
 
-      <Button
-        type="default"
-        onClick={handleGetLocation}
-        className="w-fit"
-      >
-        Get Location
-      </Button>
-
       {/* Map Container */}
-      <div className="w-full h-[400px] relative mt-5 overflow-hidden border">
-        <MapContainer
-          className="border"
-          center={position}
-          zoom={13}
-          scrollWheelZoom={false}
-        >
-          <TileLayer
-            attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-          />
-          <Marker position={position}>
-            <Popup>Your location</Popup>
-          </Marker>
-          <UpdateMapView coords={position} />
-        </MapContainer>
-      </div>
+      {position && (
+        <Card size="small">
+          <MapContainer
+            className="border"
+            center={position}
+            zoom={13}
+            scrollWheelZoom={false}
+            style={{
+              width: "100%",
+              height: "300px",
+            }}
+          >
+            <TileLayer
+              attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+              url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+            />
+            <Marker position={position}>
+              <Popup>Your location</Popup>
+            </Marker>
+            <UpdateMapView coords={position} />
+          </MapContainer>
+        </Card>
+      )}
+
       {/* Get Location Button */}
-      <Button type="dashed" size="large" icon="🗺️" onClick={handleGetLocation}>
+      <Button
+        type="dashed"
+        size="large"
+        className="mt-5"
+        icon="🗺️"
+        onClick={handleGetLocation}
+      >
         Share Your Current Location
       </Button>
       {/* Submit Button */}

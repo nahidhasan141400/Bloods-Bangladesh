@@ -10,6 +10,7 @@ const donorApi = api.injectEndpoints({
           body: data,
         };
       },
+      invalidatesTags: ["user"],
     }),
   }),
 });
