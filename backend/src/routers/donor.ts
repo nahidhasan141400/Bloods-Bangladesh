@@ -5,6 +5,7 @@ import CreateRouter from "@CreateRoute";
 const MakeRouter = new CreateRouter("/ui/donor");
 const app = MakeRouter.getApp();
 // path
-app.post("/registration", DonorController.SearchDonor);
+app.post("/create", DonorController.CreateDonor);
+app.post("/search", DonorController.SearchDonor);
 
 export default MakeRouter;
