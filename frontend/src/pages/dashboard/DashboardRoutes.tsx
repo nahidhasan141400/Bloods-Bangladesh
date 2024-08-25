@@ -7,7 +7,8 @@ const DashboardRoutes = () => {
     <BrowserRouter>
       <Routes>
         <Route index element={<Dashboard />} />
-        <Route path="setInfo" element={<SetInformation />} />
+        <Route path="profile" element={<Dashboard />} />
+        <Route path="setup-profile" element={<SetInformation />} />
       </Routes>
     </BrowserRouter>
   );
