@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
-import { Dispatch, SetStateAction, useState } from "react";
-import { Button, Form, FormProps, Input, Select } from "antd";
+import { Dispatch, SetStateAction, useEffect, useState } from "react";
+import { Button, Form, FormProps, Input, message, Select } from "antd";
 import { districts, upozilas } from "../../../../../data/stepsData";
 
 const { Option } = Select;
@@ -34,6 +34,41 @@ const ContactInfo = ({
   const [selectedDistrict, setSelectedDistrict] = useState<
     string | undefined
   >();
+  const [form] = Form.useForm();
+
+  const [location, setLocation] = useState<any>({
+    latitude: null,
+    longitude: null,
+  });
+
+
+  const handleGetLocation = () => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          setLocation({
+            latitude: position.coords.latitude,
+            longitude: position.coords.longitude,
+          });
+          message.success("Location fetched successfully!");
+        },
+        (error) => {
+          message.error(error.message);
+        }
+      );
+    } else {
+      message.error("Geolocation is not supported by this browser.");
+    }
+  };
+
+  useEffect(() => {
+    if (location.latitude && location.longitude) {
+      form.setFieldsValue({
+        latitude: location.latitude,
+        longitude: location.longitude,
+      });
+    }
+  }, [location, form]);
 
   const handleDivisionChange = (value: string) => {
     setSelectedDivision(value);
@@ -45,7 +80,10 @@ const ContactInfo = ({
   };
 
   const onFinish: FormProps<any>["onFinish"] = (values) => {
-    setData(values);
+    setData({
+      ...values,
+      ...location,
+    });
     setCurrent(current + 1);
   };
 
@@ -145,6 +183,37 @@ const ContactInfo = ({
               ))}
           </Select>
         </Form.Item>
+        {/* Get Location Button */}
+        <Form.Item
+          label="Longitude"
+          name="longitude"
+          rules={[{ required: true, message: "Please enter your longitude!" }]}
+        >
+          <Input
+            size="large"
+            placeholder="Click get location to get longitude"
+            disabled
+          />
+        </Form.Item>
+
+        <Form.Item
+          label="Latitude"
+          name="latitude"
+          rules={[{ required: true, message: "Please enter your latitude!" }]}
+        >
+          <Input
+            size="large"
+            placeholder="Click get location to get latitude"
+            disabled
+          />
+        </Form.Item>
+        <Button
+          type="default"
+          onClick={handleGetLocation}
+          className="w-fit -mt-5"
+        >
+          Get Location
+        </Button>
       </div>
       {/* Submit Button */}
       <div className="mt-3 md:mt-10 mb-5 h-fit gap-1 flex items-center justify-end">
