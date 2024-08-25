@@ -2,6 +2,8 @@
 
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { Button, Form, FormProps, Input, message, Select } from "antd";
+import { MapContainer, Marker, Popup, TileLayer, useMap } from "react-leaflet";
+import "leaflet/dist/leaflet.css";
 import { districts, divisions, upazilas } from "../../../../../data/stepsData";
 import { AddDonorFromI } from "../../../../../Interface/Interface";
 
@@ -27,10 +29,27 @@ const ContactInfo = ({
 
   const [form] = Form.useForm();
 
-  const [location, setLocation] = useState<any>({
-    latitude: null,
-    longitude: null,
+  const [location, setLocation] = useState<{
+    latitude: number | null;
+    longitude: number | null;
+  }>({
+    latitude: defaultValues ? defaultValues?.latitude : null,
+    longitude: defaultValues ? defaultValues?.longitude : null,
   });
+
+
+  const position: [number, number] =
+    location.latitude && location.longitude
+      ? [location.latitude, location.longitude]
+      : [51.505, -0.09];
+
+  const UpdateMapView = ({ coords }: { coords: [number, number] }) => {
+    const map = useMap();
+    useEffect(() => {
+      map.setView(coords, 13);
+    }, [coords, map]);
+    return null;
+  };
 
   const handleGetLocation = () => {
     if (navigator.geolocation) {
@@ -51,15 +70,6 @@ const ContactInfo = ({
       message.error("Geolocation is not supported by this browser.");
     }
   };
-
-  useEffect(() => {
-    if (location.latitude && location.longitude) {
-      form.setFieldsValue({
-        latitude: location.latitude,
-        longitude: location.longitude,
-      });
-    }
-  }, [location, form]);
 
   const handleDivisionChange = (value: string) => {
     setSelectedDivision(value);
@@ -175,6 +185,34 @@ const ContactInfo = ({
               ))}
           </Select>
         </Form.Item>
+      </div>
+      {/* Get Location Button */}
+
+      <Button
+        type="default"
+        onClick={handleGetLocation}
+        className="w-fit"
+      >
+        Get Location
+      </Button>
+
+      {/* Map Container */}
+      <div className="w-full h-[400px] relative mt-5 overflow-hidden border">
+        <MapContainer
+          className="border"
+          center={position}
+          zoom={13}
+          scrollWheelZoom={false}
+        >
+          <TileLayer
+            attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+          />
+          <Marker position={position}>
+            <Popup>Your location</Popup>
+          </Marker>
+          <UpdateMapView coords={position} />
+        </MapContainer>
       </div>
       {/* Get Location Button */}
       <Button type="dashed" size="large" icon="🗺️" onClick={handleGetLocation}>
