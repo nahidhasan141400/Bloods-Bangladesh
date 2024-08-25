@@ -1,10 +1,25 @@
 import { Button, Descriptions, DescriptionsProps } from "antd";
+import { FC } from "react";
+import { AddDonorFromI } from "../../../../../Interface/Interface";
+import { useCerateDonarMutation } from "../../../../../redux/api/donorApi/donorApi";
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
-const ShowFields = ({ data, current, setCurrent }: any) => {
-  const handleSubmit = () => {
+const ShowFields: FC<{
+  data: AddDonorFromI | any;
+  current: any;
+  setCurrent: any;
+}> = ({ data, current, setCurrent }) => {
+  const [Create, CreateOpt] = useCerateDonarMutation();
+
+  const handleSubmit = async () => {
     console.log(data);
+    try {
+      const res = await Create(data);
+      console.log("🚀 ~ handleSubmit ~ res:", res);
+    } catch (error) {
+      console.log("🚀 ~ handleSubmit ~ error:", error);
+    }
   };
 
   const prev = () => {
@@ -46,7 +61,7 @@ const ShowFields = ({ data, current, setCurrent }: any) => {
     {
       key: "7",
       label: "Address",
-      children: <p>{data?.addressline}</p>,
+      children: <p>{data?.address}</p>,
     },
     {
       key: "8",
@@ -65,8 +80,8 @@ const ShowFields = ({ data, current, setCurrent }: any) => {
     },
     {
       key: "11",
-      label: "Upozala",
-      children: <p>{data?.upozila}</p>,
+      label: "Upazila",
+      children: <p>{data?.upazila}</p>,
     },
     {
       key: "12",
@@ -82,6 +97,9 @@ const ShowFields = ({ data, current, setCurrent }: any) => {
   return (
     <div className="md:p-5 p-2 flex justify-center items-center flex-col w-full h-full">
       <Descriptions title="Donar Info" items={items} />
+      <div>
+        map : {data?.latitude} - {data?.longitude}
+      </div>
       <div className="mt-3 md:mt-10 mb-5 h-fit w-full gap-1 flex items-center justify-end">
         <Button
           onClick={handleSubmit}

@@ -94,6 +94,9 @@ const PersonalInfo = ({
             {
               pattern: /^\d{11}$/,
               message: "Please enter a valid 11-digit phone number!",
+              pattern:
+                /^(?:\+88|88)?01[3-9]\d{8}(?:,(?:\+88|88)?01[3-9]\d{8})*$/,
+              message: "Please enter a valid phone Bangladeshi number",
             },
           ]}
         >

@@ -46,7 +46,7 @@ export const DonorController = {
         gender: body.gender,
         name: body.name,
         phone: body.phone,
-        photo: user.photo || "no.png",
+        photo: user?.photo || "no.png",
         upazila: body.upazila,
         user_id: user.id,
         latitude: body.latitude,

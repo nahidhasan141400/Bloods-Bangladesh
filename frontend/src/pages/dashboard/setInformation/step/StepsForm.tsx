@@ -1,13 +1,15 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useEffect, useState } from "react";
 import { Steps, theme } from "antd";
 import PersonalInfo from "./content/PersonalInfo";
 import ContactInfo from "./content/ContactInfo";
 import ShowFields from "./content/ShowFields";
+import { AddDonorFromI } from "../../../../Interface/Interface";
 
 const StepsForm: React.FC = () => {
   const [personalData, setPersonalData] = useState({});
   const [contactData, setContactData] = useState({});
-  const [finalData, setFinalData] = useState({});
+  const [finalData, setFinalData] = useState<AddDonorFromI | any>({});
 
   const { token } = theme.useToken();
   const [current, setCurrent] = useState(0);
@@ -47,8 +49,13 @@ const StepsForm: React.FC = () => {
     },
     {
       title: "Review",
-      content: <ShowFields current={current}
-      setCurrent={setCurrent} data={finalData} />,
+      content: (
+        <ShowFields
+          current={current}
+          setCurrent={setCurrent}
+          data={finalData}
+        />
+      ),
     },
   ];
   // const next = () => {
