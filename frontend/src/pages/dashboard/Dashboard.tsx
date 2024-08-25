@@ -15,8 +15,12 @@ const Dashboard = () => {
       </div>
       {/* body */}
       {/* Banner  */}
-      <div>
-        <img src="/banner.png" alt="" />
+      <div className="w-full relative px-3">
+        <img
+          className="m-3 rounded-md w-full mx-auto"
+          src="/banner.png"
+          alt=""
+        />
       </div>
     </main>
   );
