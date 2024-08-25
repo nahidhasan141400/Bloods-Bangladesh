@@ -12,6 +12,8 @@ const ShowFields: FC<{
 }> = ({ data, current, setCurrent }) => {
   const [Create, CreateOpt] = useCerateDonarMutation();
 
+  console.log(CreateOpt)
+
   const handleSubmit = async () => {
     console.log(data);
     try {
