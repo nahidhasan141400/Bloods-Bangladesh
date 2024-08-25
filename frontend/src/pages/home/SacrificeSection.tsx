@@ -13,10 +13,10 @@ const SacrificeSection = () => {
         scrollTrigger: {
           trigger: containerRef.current,
           pin:true,
-          scrub: 1,
+          scrub: 2,
           start: "top 15%",
           end: () => "+=" + containerRef.current?.offsetWidth,
-          markers: true
+          markers: false
         }
       })
   },{scope: containerRef})
