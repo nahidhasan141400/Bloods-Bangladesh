@@ -83,6 +83,16 @@ const ShowFields: FC<{
       label: "Upazila",
       children: <p>{data?.upazila}</p>,
     },
+    {
+      key: "12",
+      label: "Longitude",
+      children: <p>{data?.longitude}</p>,
+    },
+    {
+      key: "13",
+      label: "Latitude",
+      children: <p>{data?.latitude}</p>,
+    },
   ];
   return (
     <div className="md:p-5 p-2 flex justify-center items-center flex-col w-full h-full">
