@@ -8,7 +8,6 @@ const StepsForm: React.FC = () => {
   const [personalData, setPersonalData] = useState({});
   const [contactData, setContactData] = useState({});
   const [finalData, setFinalData] = useState({});
-  console.log(personalData, contactData);
 
   const { token } = theme.useToken();
   const [current, setCurrent] = useState(0);

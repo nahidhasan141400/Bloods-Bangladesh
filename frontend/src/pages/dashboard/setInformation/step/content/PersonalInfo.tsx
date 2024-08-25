@@ -1,8 +1,10 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { Dispatch, SetStateAction } from "react";
+import { Dispatch, SetStateAction, useEffect } from "react";
 import type { FormProps } from "antd";
 import { Form, Input, Select, DatePicker, Button } from "antd";
 import { bloodsGroups } from "../../../../../data/stepsData";
+import { useGetUserQuery } from "../../../../../redux/api/authApi/authApi";
+import Loading from "../../../../../components/Loading/Loading";
 
 const { Option } = Select;
 
@@ -36,9 +38,24 @@ const PersonalInfo = ({
   ) => {
     console.log("Failed:", errorInfo);
   };
+  const [form] = Form.useForm();
+
+  const { data, isLoading } = useGetUserQuery(undefined);
+  console.log(data);
+
+  useEffect(() => {
+    if (data) {
+      form.setFieldsValue({
+        name: data?.name,
+        email: data?.email,
+      });
+    }
+  }, [data, form]);
+  if (isLoading) return <Loading />;
 
   return (
     <Form
+      form={form}
       layout="vertical"
       onFinish={onFinish}
       onFinishFailed={onFinishFailed}
@@ -75,8 +92,8 @@ const PersonalInfo = ({
           rules={[
             { required: true, message: "Please input your phone number!" },
             {
-              pattern: /^\d{10}$/,
-              message: "Please enter a valid 10-digit phone number!",
+              pattern: /^\d{11}$/,
+              message: "Please enter a valid 11-digit phone number!",
             },
           ]}
         >
