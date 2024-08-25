@@ -2,20 +2,10 @@
 
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { Button, Form, FormProps, Input, message, Select } from "antd";
-import { districts, upozilas } from "../../../../../data/stepsData";
+import { districts, divisions, upazilas } from "../../../../../data/stepsData";
+import { AddDonorFromI } from "../../../../../Interface/Interface";
 
 const { Option } = Select;
-
-const divisions = [
-  { value: "dhaka", label: "Dhaka" },
-  { value: "chattogram", label: "Chattogram" },
-  { value: "khulna", label: "Khulna" },
-  { value: "rajshahi", label: "Rajshahi" },
-  { value: "barishal", label: "Barishal" },
-  { value: "sylhet", label: "Sylhet" },
-  { value: "rangpur", label: "Rangpur" },
-  { value: "mymensingh", label: "Mymensingh" },
-];
 
 const ContactInfo = ({
   current,
@@ -34,13 +24,13 @@ const ContactInfo = ({
   const [selectedDistrict, setSelectedDistrict] = useState<
     string | undefined
   >();
+
   const [form] = Form.useForm();
 
   const [location, setLocation] = useState<any>({
     latitude: null,
     longitude: null,
   });
-
 
   const handleGetLocation = () => {
     if (navigator.geolocation) {
@@ -50,6 +40,7 @@ const ContactInfo = ({
             latitude: position.coords.latitude,
             longitude: position.coords.longitude,
           });
+
           message.success("Location fetched successfully!");
         },
         (error) => {
@@ -93,15 +84,16 @@ const ContactInfo = ({
 
   return (
     <Form
+      form={form}
       initialValues={defaultValues ? defaultValues : " "}
       layout="vertical"
       onFinish={onFinish}
       className="m-2 md:mx-10  md:mt-10"
     >
-      {/* Addressline */}
-      <Form.Item
-        label="Addressline"
-        name="addressline"
+      {/* Address line */}
+      <Form.Item<AddDonorFromI>
+        label="Address line"
+        name="address"
         rules={[{ required: true, message: "Please enter your address!" }]}
       >
         <Input size="large" placeholder="Enter your address" />
@@ -109,7 +101,7 @@ const ContactInfo = ({
 
       <div className="grid md:grid-cols-2 md:gap-4">
         {/* Country */}
-        <Form.Item
+        <Form.Item<AddDonorFromI>
           label="Country"
           name="country"
           initialValue="Bangladesh"
@@ -120,7 +112,7 @@ const ContactInfo = ({
           </Select>
         </Form.Item>
         {/* Division */}
-        <Form.Item
+        <Form.Item<AddDonorFromI>
           label="Division"
           name="division"
           rules={[{ required: true, message: "Please select your division!" }]}
@@ -140,7 +132,7 @@ const ContactInfo = ({
         </Form.Item>
 
         {/* District */}
-        <Form.Item
+        <Form.Item<AddDonorFromI>
           label="District"
           name="district"
           rules={[{ required: true, message: "Please select your district!" }]}
@@ -162,59 +154,32 @@ const ContactInfo = ({
           </Select>
         </Form.Item>
 
-        {/* Upozila */}
-        <Form.Item
-          label="Upozila"
-          name="upozila"
-          rules={[{ required: true, message: "Please select your upozila!" }]}
+        {/* upazila */}
+        <Form.Item<AddDonorFromI>
+          label="Upazila"
+          name="upazila"
+          rules={[{ required: true, message: "Please select your upazila!" }]}
         >
           <Select
             showSearch
             size="large"
-            placeholder="Select your upozila"
+            placeholder="Select your upazila"
             disabled={!selectedDistrict}
           >
             {selectedDistrict &&
               //@ts-expect-error skip if division
-              upozilas[selectedDistrict]?.map((upozila) => (
-                <Option key={upozila} value={upozila}>
-                  {upozila}
+              upazilas[selectedDistrict]?.map((upazila) => (
+                <Option key={upazila} value={upazila}>
+                  {upazila}
                 </Option>
               ))}
           </Select>
         </Form.Item>
-        {/* Get Location Button */}
-        <Form.Item
-          label="Longitude"
-          name="longitude"
-          rules={[{ required: true, message: "Please enter your longitude!" }]}
-        >
-          <Input
-            size="large"
-            placeholder="Click get location to get longitude"
-            disabled
-          />
-        </Form.Item>
-
-        <Form.Item
-          label="Latitude"
-          name="latitude"
-          rules={[{ required: true, message: "Please enter your latitude!" }]}
-        >
-          <Input
-            size="large"
-            placeholder="Click get location to get latitude"
-            disabled
-          />
-        </Form.Item>
-        <Button
-          type="default"
-          onClick={handleGetLocation}
-          className="w-fit -mt-5"
-        >
-          Get Location
-        </Button>
       </div>
+      {/* Get Location Button */}
+      <Button type="dashed" size="large" icon="🗺️" onClick={handleGetLocation}>
+        Share Your Current Location
+      </Button>
       {/* Submit Button */}
       <div className="mt-3 md:mt-10 mb-5 h-fit gap-1 flex items-center justify-end">
         <Button size="large" type="primary" htmlType="submit">

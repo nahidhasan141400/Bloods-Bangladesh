@@ -70,8 +70,17 @@ export const districts = {
   ],
   mymensingh: ["Mymensingh", "Jamalpur", "Netrokona", "Sherpur"],
 };
-
-export const upozilas = {
+export const divisions = [
+  { value: "dhaka", label: "Dhaka" },
+  { value: "chattogram", label: "Chattogram" },
+  { value: "khulna", label: "Khulna" },
+  { value: "rajshahi", label: "Rajshahi" },
+  { value: "barishal", label: "Barishal" },
+  { value: "sylhet", label: "Sylhet" },
+  { value: "rangpur", label: "Rangpur" },
+  { value: "mymensingh", label: "Mymensingh" },
+];
+export const upazilas = {
   // Dhaka Division
   Dhaka: [
     "Dhanmondi",
