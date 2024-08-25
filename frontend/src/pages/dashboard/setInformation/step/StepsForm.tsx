@@ -1,16 +1,27 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Steps, theme } from "antd";
 import PersonalInfo from "./content/PersonalInfo";
 import ContactInfo from "./content/ContactInfo";
 import ShowFields from "./content/ShowFields";
 
 const StepsForm: React.FC = () => {
-  const [personalData, setPersonalData] = useState();
-  const [contactData, setContactData] = useState();
+  const [personalData, setPersonalData] = useState({});
+  const [contactData, setContactData] = useState({});
+  const [finalData, setFinalData] = useState({});
   console.log(personalData, contactData);
 
   const { token } = theme.useToken();
   const [current, setCurrent] = useState(0);
+
+  useEffect(() => {
+    if (personalData && contactData) {
+      const data = {
+        ...personalData,
+        ...contactData,
+      };
+      setFinalData(data);
+    }
+  }, [personalData, contactData]);
 
   const steps = [
     {
@@ -37,7 +48,8 @@ const StepsForm: React.FC = () => {
     },
     {
       title: "Review",
-      content: <ShowFields />,
+      content: <ShowFields current={current}
+      setCurrent={setCurrent} data={finalData} />,
     },
   ];
   // const next = () => {

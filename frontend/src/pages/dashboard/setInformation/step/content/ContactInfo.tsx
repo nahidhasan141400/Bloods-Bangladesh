@@ -2,7 +2,7 @@
 
 import { Dispatch, SetStateAction, useState } from "react";
 import { Button, Form, FormProps, Input, Select } from "antd";
-import { districts, upozilas } from "../../../../../data/address";
+import { districts, upozilas } from "../../../../../data/stepsData";
 
 const { Option } = Select;
 
@@ -88,6 +88,7 @@ const ContactInfo = ({
           rules={[{ required: true, message: "Please select your division!" }]}
         >
           <Select
+            showSearch
             size="large"
             placeholder="Select your division"
             onChange={handleDivisionChange}
@@ -107,6 +108,7 @@ const ContactInfo = ({
           rules={[{ required: true, message: "Please select your district!" }]}
         >
           <Select
+            showSearch
             size="large"
             placeholder="Select your district"
             onChange={handleDistrictChange}
@@ -129,6 +131,7 @@ const ContactInfo = ({
           rules={[{ required: true, message: "Please select your upozila!" }]}
         >
           <Select
+            showSearch
             size="large"
             placeholder="Select your upozila"
             disabled={!selectedDistrict}
@@ -145,11 +148,10 @@ const ContactInfo = ({
       </div>
       {/* Submit Button */}
       <div className="mt-3 md:mt-10 mb-5 h-fit gap-1 flex items-center justify-end">
-        
-          <Button size="large" type="primary" htmlType="submit">
-            Next
-          </Button>
-        
+        <Button size="large" type="primary" htmlType="submit">
+          Next
+        </Button>
+
         <Button size="large" onClick={() => prev()}>
           Previous
         </Button>

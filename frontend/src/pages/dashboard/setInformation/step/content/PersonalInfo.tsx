@@ -2,6 +2,7 @@
 import { Dispatch, SetStateAction } from "react";
 import type { FormProps } from "antd";
 import { Form, Input, Select, DatePicker, Button } from "antd";
+import { bloodsGroups } from "../../../../../data/stepsData";
 
 const { Option } = Select;
 
@@ -118,16 +119,12 @@ const PersonalInfo = ({
             { required: true, message: "Please select your blood group!" },
           ]}
         >
-          <Select size="large" placeholder="Select your blood group">
-            <Option value="A+">A+</Option>
-            <Option value="A-">A-</Option>
-            <Option value="B+">B+</Option>
-            <Option value="B-">B-</Option>
-            <Option value="AB+">AB+</Option>
-            <Option value="AB-">AB-</Option>
-            <Option value="O+">O+</Option>
-            <Option value="O-">O-</Option>
-          </Select>
+          <Select
+            showSearch
+            size="large"
+            placeholder="Select your blood group"
+            options={bloodsGroups}
+          />
         </Form.Item>
       </div>
 
