@@ -60,6 +60,7 @@ app.use(
         "'self'",
         "data:",
         "blob:",
+        "https://flagcdn.com",
         "https://images.unsplash.com",
         "http://192.168.5.76:5173/",
         "http://127.0.0.1:5173",

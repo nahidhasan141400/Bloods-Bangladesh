@@ -15,19 +15,21 @@ const Home = () => {
     <div>
       {isLoading && <Loading />}
       <div className="px-2 max-w-4xl mx-auto">
-        {!data?.donor && (
-          <Alert
-            action={
-              <Link to={"/dashboard"}>
-                <Button type="primary">Setup Now</Button>
-              </Link>
-            }
-            type="warning"
-            showIcon
-            message={"You Don't Setup Your Information"}
-            closable
-          />
-        )}
+        {data
+          ? !data?.donor && (
+              <Alert
+                action={
+                  <Link to={"/dashboard"}>
+                    <Button type="primary">Setup Now</Button>
+                  </Link>
+                }
+                type="warning"
+                showIcon
+                message={"You Don't Setup Your Information"}
+                closable
+              />
+            )
+          : ""}
       </div>
       <Bg />
       <HeroSection user={data} />
