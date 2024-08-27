@@ -1,5 +1,5 @@
 export const districts = {
-  dhaka: [
+  Dhaka: [
     "Dhaka",
     "Gazipur",
     "Narayanganj",
@@ -14,7 +14,7 @@ export const districts = {
     "Rajbari",
     "Shariatpur",
   ],
-  chattogram: [
+  Chattogram: [
     "Chattogram",
     "Cox's Bazar",
     "Comilla",
@@ -27,7 +27,7 @@ export const districts = {
     "Bandarban",
     "Rangamati",
   ],
-  khulna: [
+  Khulna: [
     "Khulna",
     "Bagerhat",
     "Satkhira",
@@ -39,7 +39,7 @@ export const districts = {
     "Chuadanga",
     "Meherpur",
   ],
-  rajshahi: [
+  Rajshahi: [
     "Rajshahi",
     "Pabna",
     "Sirajganj",
@@ -49,7 +49,7 @@ export const districts = {
     "Joypurhat",
     "Chapainawabganj",
   ],
-  barishal: [
+  Barishal: [
     "Barishal",
     "Patuakhali",
     "Bhola",
@@ -57,8 +57,8 @@ export const districts = {
     "Jhalokathi",
     "Barguna",
   ],
-  sylhet: ["Sylhet", "Moulvibazar", "Habiganj", "Sunamganj"],
-  rangpur: [
+  Sylhet: ["Sylhet", "Moulvibazar", "Habiganj", "Sunamganj"],
+  Rangpur: [
     "Rangpur",
     "Dinajpur",
     "Gaibandha",
@@ -68,17 +68,17 @@ export const districts = {
     "Panchagarh",
     "Thakurgaon",
   ],
-  mymensingh: ["Mymensingh", "Jamalpur", "Netrokona", "Sherpur"],
+  Mymensingh: ["Mymensingh", "Jamalpur", "Netrokona", "Sherpur"],
 };
 export const divisions = [
-  { value: "dhaka", label: "Dhaka" },
-  { value: "chattogram", label: "Chattogram" },
-  { value: "khulna", label: "Khulna" },
-  { value: "rajshahi", label: "Rajshahi" },
-  { value: "barishal", label: "Barishal" },
-  { value: "sylhet", label: "Sylhet" },
-  { value: "rangpur", label: "Rangpur" },
-  { value: "mymensingh", label: "Mymensingh" },
+  { value: "Dhaka", label: "Dhaka" },
+  { value: "Chattogram", label: "Chattogram" },
+  { value: "Khulna", label: "Khulna" },
+  { value: "Rajshahi", label: "Rajshahi" },
+  { value: "Barishal", label: "Barishal" },
+  { value: "Sylhet", label: "Sylhet" },
+  { value: "Rangpur", label: "Rangpur" },
+  { value: "Mymensingh", label: "Mymensingh" },
 ];
 export const upazilas = {
   // Dhaka Division

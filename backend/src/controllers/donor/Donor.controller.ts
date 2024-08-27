@@ -8,6 +8,7 @@ export const DonorController = {
 
       const query: any = {
         country: body.country,
+        blood_group: body.blood,
       };
 
       if (body.division) {

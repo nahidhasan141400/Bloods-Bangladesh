@@ -13,12 +13,10 @@ const HeroSection: FC<{ user: any }> = ({ user }) => {
         <div className="w-full flex flex-col justify-center items-center gap-2">
           <img
             src={"/images/logo.png"}
-            className="w-52 md:w-60"
+            className="w-52 md:w-72"
             alt="bloods bd logo"
           />
-          <h1 className="text-4xl md:text-6xl xl:text-7xl font-extrabold text-primary mt-2 md:mt-0">
-            BLOODSBD.COM
-          </h1>
+
           <p className="text-lg px-4 md:px-0 text-center md:text-xl">
             Be the Reason Someone Smiles Today Donate Blood and Save Lives.
           </p>

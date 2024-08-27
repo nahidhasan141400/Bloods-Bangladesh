@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { api } from "../api";
 
 const donorApi = api.injectEndpoints({
@@ -12,7 +13,17 @@ const donorApi = api.injectEndpoints({
       },
       invalidatesTags: ["user"],
     }),
+    SearchDonar: builder.mutation<any, any>({
+      query: (data) => {
+        return {
+          url: "/donor/search",
+          method: "POST",
+          body: data,
+        };
+      },
+      invalidatesTags: ["user"],
+    }),
   }),
 });
 
-export const { useCerateDonarMutation } = donorApi;
+export const { useCerateDonarMutation, useSearchDonarMutation } = donorApi;
