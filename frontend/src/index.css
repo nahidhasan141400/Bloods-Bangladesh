@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
-.leaflet-container{
-    height: 100vh;
+.leaflet-container {
+  height: 100vh;
+}
+
+html {
+  scroll-behavior: smooth;
 }
