@@ -56,14 +56,7 @@ app.use(
         "http://192.168.5.76:5173/",
         "http://127.0.0.1:5173",
       ],
-      imgSrc: [
-        "'self'",
-        "data:",
-        "blob:",
-        "https://images.unsplash.com",
-        "http://192.168.5.76:5173/",
-        "http://127.0.0.1:5173",
-      ], // Allow blob: for images
+      imgSrc: ["'self'", "*", "data:"], // Allow blob: for images
       styleSrc: ["'self'", "'unsafe-inline'"],
     },
   })

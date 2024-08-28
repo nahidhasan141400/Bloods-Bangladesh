@@ -1,57 +1,62 @@
-import { Button, Card, Form, Select } from "antd";
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { Button, Card, Empty, Form, Select } from "antd";
 import UserCard from "./UserCard";
+import {
+  bloodsGroups,
+  districts,
+  divisions,
+  upazilas,
+} from "../../data/stepsData";
+import { useSearchDonarMutation } from "../../redux/api/donorApi/donorApi";
+import { toast } from "sonner";
+import { useState } from "react";
 
 const SearchDonor = () => {
+  const [form] = Form.useForm();
+  const division = Form.useWatch("division", form);
+  const district = Form.useWatch("district", form);
+  const [DonorData, setDonorData] = useState<any>(null);
+  // from handel
+  const [Search, SearchOpt] = useSearchDonarMutation();
+
+  const Submit = async (value: any) => {
+    console.log("🚀 ~ Submit ~ value:", value);
+    try {
+      if (SearchOpt.isLoading) {
+        return;
+      }
+      const Res = await Search({
+        country: "bangladesh",
+        ...value,
+      });
+      if ("error" in Res) {
+        return toast.error("Something is wrong");
+      }
+      setDonorData(Res.data);
+    } catch (error) {
+      console.log("🚀 ~ Submit ~ error:", error);
+    }
+  };
   return (
     <div className="w-full relative container mx-auto">
       <Card>
-        <Form layout="vertical">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
+        <Form onFinish={Submit} form={form} layout="vertical">
+          <div className="grid grid-cols-1 md:grid-cols-4 sm:grid-cols-2 gap-2">
             <Form.Item
-              name={"country"}
-              label="Country"
+              name={"blood"}
+              label="Blood Group"
               rules={[
                 {
                   required: true,
-                  message: "Please select Your country",
+                  message: "Please select Blood Group",
                 },
               ]}
             >
-              <Select
-                size="large"
-                options={[
-                  {
-                    value: "bangladesh",
-                    label: (
-                      <span className="flex items-center gap-2">
-                        {" "}
-                        <img
-                          src="https://flagcdn.com/48x36/bd.png"
-                          className="w-6"
-                        />
-                        <span>Bangladesh</span>
-                      </span>
-                    ),
-                  },
-                  {
-                    value: "USA",
-                    label: (
-                      <span className="flex items-center gap-2">
-                        {" "}
-                        <img
-                          src="https://flagcdn.com/48x36/us.png"
-                          className="w-6"
-                        />
-                        <span>USA</span>
-                      </span>
-                    ),
-                  },
-                ]}
-              />
+              <Select showSearch size="large" options={bloodsGroups} />
             </Form.Item>
             <Form.Item
-              name={"country"}
-              label="Country"
+              name={"division"}
+              label="division"
               rules={[
                 {
                   required: true,
@@ -59,95 +64,55 @@ const SearchDonor = () => {
                 },
               ]}
             >
+              <Select showSearch size="large" options={divisions} />
+            </Form.Item>
+            <Form.Item name={"district"} label="District">
               <Select
+                disabled={!division}
+                showSearch
                 size="large"
-                options={[
-                  {
-                    value: "bangladesh",
-                    label: (
-                      <span className="flex items-center gap-2">
-                        {" "}
-                        <img
-                          src="https://flagcdn.com/48x36/bd.png"
-                          className="w-6"
-                        />
-                        <span>Bangladesh</span>
-                      </span>
-                    ),
-                  },
-                  {
-                    value: "USA",
-                    label: (
-                      <span className="flex items-center gap-2">
-                        {" "}
-                        <img
-                          src="https://flagcdn.com/48x36/us.png"
-                          className="w-6"
-                        />
-                        <span>USA</span>
-                      </span>
-                    ),
-                  },
-                ]}
+                // @ts-expect-error skip
+                options={districts[division]?.map((e: any) => {
+                  return { value: e, label: e };
+                })}
               />
             </Form.Item>
-            <Form.Item
-              name={"country"}
-              label="Country"
-              rules={[
-                {
-                  required: true,
-                  message: "Please select Your country",
-                },
-              ]}
-            >
+            <Form.Item name={"upazila"} label="Upazila">
               <Select
                 size="large"
-                options={[
-                  {
-                    value: "bangladesh",
-                    label: (
-                      <span className="flex items-center gap-2">
-                        {" "}
-                        <img
-                          src="https://flagcdn.com/48x36/bd.png"
-                          className="w-6"
-                        />
-                        <span>Bangladesh</span>
-                      </span>
-                    ),
-                  },
-                  {
-                    value: "USA",
-                    label: (
-                      <span className="flex items-center gap-2">
-                        {" "}
-                        <img
-                          src="https://flagcdn.com/48x36/us.png"
-                          className="w-6"
-                        />
-                        <span>USA</span>
-                      </span>
-                    ),
-                  },
-                ]}
+                showSearch
+                disabled={!district}
+                // @ts-expect-error skip
+                options={upazilas[district]?.map((e: any) => {
+                  return { value: e, label: e };
+                })}
               />
             </Form.Item>
           </div>
           <div className="w-full">
-            <Button icon="🔍" block type="primary" size="large">
+            <Button
+              loading={SearchOpt.isLoading}
+              icon="🔍"
+              block
+              type="primary"
+              size="large"
+              htmlType="submit"
+            >
               Search
             </Button>
           </div>
         </Form>
       </Card>
       <div className="py-5">
-        <Card title="Donor Result" loading={false}>
+        <Card loading={SearchOpt.isLoading} title="Donor Result">
           <div className="grid w-full grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
-            <UserCard />
-            <UserCard />
-            <UserCard />
-            <UserCard />
+            {DonorData ? (
+              DonorData.map((e: any, i: number) => {
+                return <UserCard key={i} data={e} />;
+              })
+            ) : (
+              <Empty />
+            )}
           </div>
         </Card>
       </div>

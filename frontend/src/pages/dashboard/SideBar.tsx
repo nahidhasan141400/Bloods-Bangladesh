@@ -1,6 +1,7 @@
-import { Avatar, Button, Drawer } from "antd";
+import { Avatar, Drawer } from "antd";
 import { useGetUserQuery } from "../../redux/api/authApi/authApi";
 import { useState } from "react";
+import { imagePath } from "../../Utils/Imgpath";
 const SideBar = () => {
   const { data } = useGetUserQuery(undefined);
   const [Open, setOpen] = useState(false);
@@ -21,6 +22,7 @@ const SideBar = () => {
             style={{
               background: "#f00",
             }}
+            src={imagePath.profile(data?.photo)}
             size={55}
             icon={<>😷</>}
           />

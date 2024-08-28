@@ -14,6 +14,7 @@ const SacrificeSection = () => {
         xPercent: -100 * widthMultiplier,
         scrollTrigger: {
           trigger: containerRef.current,
+          pin: true,
           scrub: 2,
           pin: true,
           start: "top 15%",
