@@ -22,8 +22,8 @@ const SacrificeSection = () => {
   },{scope: containerRef})
 
   return (
-    <div ref={containerRef} className=" w-full my-20 overflow-hidden">
-      <div className="flex h-[75vh] subContainer" >
+    <div ref={containerRef} className=" w-full my-10 md:my-20 overflow-hidden">
+      <div className="flex h-[50vh] lg:h-[75vh] subContainer" >
         <img src="../../../public/images/heros/abu-sayed.jpg" alt="" />
         <img src="../../../public/images/heros/dipto-dey.jpg" alt="" />
         <img
