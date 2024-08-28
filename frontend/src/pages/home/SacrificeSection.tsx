@@ -16,7 +16,6 @@ const SacrificeSection = () => {
           trigger: containerRef.current,
           pin: true,
           scrub: 2,
-          pin: true,
           start: "top 15%",
           end: () => "+=" + containerRef.current?.offsetWidth,
           markers: false,
