@@ -2,14 +2,14 @@ import { Link } from "react-router-dom";
 
 const BecomeOurNextHero = () => {
   return (
-    <div className="max-w-5xl px-3 mx-auto">
+    <div className="max-w-5xl px-3 mx-auto ">
       <div
         style={{
           borderRadius: "30px",
           background:
             "radial-gradient(95.7% 122.85% at 97.67% 92.66%, #FF7177 0%, #B30000 100%)",
         }}
-        className="relative mt-28 mb-10 h-80 md:h-auto p-16 flex justify-center md:justify-end"
+        className="bg-p1 relative mt-28 mb-10 h-80 md:h-auto p-16 flex justify-center md:justify-end"
       >
         <img
           src={"/images/person.png"}

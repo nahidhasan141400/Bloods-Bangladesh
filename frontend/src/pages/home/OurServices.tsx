@@ -35,7 +35,7 @@ const servicesData: IServicesData[] = [
 
 export default function OurServices() {
   return (
-    <div className="bg-gray-200 py-16">
+    <div className="bg-gray-200 py-16 bg-p1">
       <Container className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
         {servicesData?.map((data: IServicesData, i: number) => {
           return <OurServicesCard key={i} data={data} />;
@@ -75,11 +75,9 @@ const OurServicesCard = ({ data }: { data: IServicesData }) => {
         </div>
       </div>
 
-      <div
-        className="bg-gray-950 text-white text-center  group-hover:bg-primary transition-all duration-500  rounded-b py-4 text-[17px] font-medium"
-      >
+      <div className="bg-gray-950 text-white text-center  group-hover:bg-primary transition-all duration-500  rounded-b py-4 text-[17px] font-medium">
         <Link to={data?.path}>
-        <button className="">Read More</button>
+          <button className="">Read More</button>
         </Link>
       </div>
     </div>

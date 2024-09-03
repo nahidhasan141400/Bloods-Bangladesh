@@ -1,6 +1,6 @@
 const Banner = () => {
   return (
-    <div className="w-full relative">
+    <div className="w-full relative pb-10">
       <img
         src="/banner.png"
         alt="banner"

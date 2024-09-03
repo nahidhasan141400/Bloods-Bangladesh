@@ -9,3 +9,7 @@
 html {
   scroll-behavior: smooth;
 }
+
+.bg-p1 {
+  background-image: url("/pattern.png");
+}

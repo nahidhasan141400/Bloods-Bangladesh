@@ -16,7 +16,7 @@ const Home = () => {
   return (
     <div>
       {isLoading && <Loading />}
-      <div className="px-2 max-w-4xl mx-auto">
+      <div className="px-2 max-w-4xl mx-auto ">
         {data
           ? !data?.donor && (
               <Alert
@@ -36,11 +36,11 @@ const Home = () => {
       <Bg />
       <HeroSection user={data} />
       <Banner />
-      <SacrificeSection />
       <OurServices />
       <AboutBloodBd />
       <OurHeros />
       <BecomeOurNextHero />
+      <SacrificeSection />
     </div>
   );
 };
