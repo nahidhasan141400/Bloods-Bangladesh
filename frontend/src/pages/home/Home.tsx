@@ -9,6 +9,7 @@ import OurHeros from "./OurHeros";
 import { Link } from "react-router-dom";
 import SacrificeSection from "./SacrificeSection";
 import OurServices from "./OurServices";
+import AboutBloodBd from "./AboutBloodBd";
 
 const Home = () => {
   const { data, isLoading } = useGetUserQuery({});
@@ -37,6 +38,7 @@ const Home = () => {
       <Banner />
       <SacrificeSection />
       <OurServices />
+      <AboutBloodBd />
       <OurHeros />
       <BecomeOurNextHero />
     </div>
