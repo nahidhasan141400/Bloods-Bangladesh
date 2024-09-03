@@ -8,6 +8,7 @@ import HeroSection from "./HeroSection";
 import OurHeros from "./OurHeros";
 import { Link } from "react-router-dom";
 import SacrificeSection from "./SacrificeSection";
+import OurServices from "./OurServices";
 
 const Home = () => {
   const { data, isLoading } = useGetUserQuery({});
@@ -35,6 +36,7 @@ const Home = () => {
       <HeroSection user={data} />
       <Banner />
       <SacrificeSection />
+      <OurServices />
       <OurHeros />
       <BecomeOurNextHero />
     </div>
