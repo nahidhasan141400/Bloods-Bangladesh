@@ -12,7 +12,6 @@ const EmailVerification: React.FC = () => {
   const location = useLocation();
   const params = new URLSearchParams(location.search);
   const email = params.get("email");
-  console.log(email);
 
   const onChange: OTPProps["onChange"] = (text) => {
     console.log("onChange:", text);
@@ -38,6 +37,7 @@ const EmailVerification: React.FC = () => {
         return; // stop the function if error occurs
       }
       toast.success("Email verified successfully");
+      window.location.href = "/dashboard";
     } catch (err) {
       console.log(err);
       toast.error("Something went wrong");

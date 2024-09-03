@@ -101,7 +101,7 @@ App.get("/api/google/auth", async (req, res, next) => {
         password: "",
       });
       await UserService.LoginCookie(res, newUser, false);
-      return res.redirect("/");
+      return res.redirect("/dashboard");
     }
   } catch (error) {
     console.log("🚀 ~ App.get ~ error:", error);

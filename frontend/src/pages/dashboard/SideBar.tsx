@@ -15,7 +15,7 @@ const SideBar = () => {
       >
         <div className="flex items-center gap-2">
           <div className="hidden md:block">
-            <h1 className="text-xl font-bold">{data?.name}</h1>
+            <h1 className="text-right font-bold">{data?.name}</h1>
             <p className="text-sm font-extralight text-right">{data?.email}</p>
           </div>
           <Avatar
@@ -23,8 +23,8 @@ const SideBar = () => {
               background: "#f00",
             }}
             src={imagePath.profile(data?.photo)}
-            size={55}
-            icon={<>😷</>}
+            size={45}
+            icon={<>{data?.name[0]}</>}
           />
         </div>
       </div>

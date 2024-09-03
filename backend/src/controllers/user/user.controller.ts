@@ -36,6 +36,7 @@ export const UserController = {
       }
 
       // send Otp to email
+      console.log("send Otp to email");
       await SendEmail({
         attachments: [],
         bcc: "",

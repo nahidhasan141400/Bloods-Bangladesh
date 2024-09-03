@@ -3,6 +3,8 @@ import { LockOutlined, MailOutlined, UserOutlined } from "@ant-design/icons";
 import { Link, useNavigate } from "react-router-dom";
 import { useRegisterUserMutation } from "../../redux/api/authApi/authApi";
 import { toast } from "sonner";
+import { proxy } from "../../proxy";
+import { LogosGoogleIcon } from "../../components/icons";
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
 const Register = () => {
@@ -84,6 +86,23 @@ const Register = () => {
                 >
                   {isLoading ? "Loading..." : "Sign up"}
                 </Button>
+                <a href={proxy + "/google/login"}>
+                  <Button
+                    className="mt-3"
+                    size="large"
+                    block
+                    type="primary"
+                    htmlType="button"
+                    icon={<LogosGoogleIcon />}
+                    style={{
+                      backgroundColor: "#fff",
+                      color: "#000",
+                      borderColor: "#cdcdcd",
+                    }}
+                  >
+                    Login With Google
+                  </Button>
+                </a>
                 <p className="mt-1 text-gray-400">
                   you have account then{" "}
                   <Link to="/auth/login" className="text-blue-300 underline">

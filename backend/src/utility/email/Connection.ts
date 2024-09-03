@@ -33,6 +33,8 @@ async function SendEmail({
       html,
       attachments,
     });
+
+    console.log("🚀 ~ mailResponse:", mailResponse);
     return { send: mailResponse.messageId };
   } catch (error) {
     console.log("🚀 ~ SendEmail ~ error:", error);
