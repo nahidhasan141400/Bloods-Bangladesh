@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Avatar, Button, Card } from "antd";
 import { FC } from "react";
+import { Link } from "react-router-dom";
 
 const UserCard: FC<{ data: any }> = ({ data }) => {
   return (
@@ -22,9 +23,11 @@ const UserCard: FC<{ data: any }> = ({ data }) => {
         </div>
       </div>
       <div className="w-full relative flex gap-2 mt-2">
-        <Button block type="primary" icon={<>📃</>}>
-          Details
-        </Button>
+        <Link to={"/donor/" + data.id}>
+          <Button block type="primary" icon={<>📃</>}>
+            Details
+          </Button>
+        </Link>
         <a href={"tel:" + data?.phone}>
           <Button block type="dashed" icon={<>📞</>}>
             Call

@@ -15,4 +15,6 @@ app.get("/verify", IsUser, (req, res) => {
   res.send(req.user);
 });
 
+app.get("/20-user", UserController.GetLast20);
+
 export default MakeRouter;

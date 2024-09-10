@@ -41,11 +41,11 @@ export default function AboutBloodBd() {
             <div className="flex justify-between items-center">
               <div className="flex items-center gap-[1px] text-[18px] font-semibold">
                 <RightDoubleArrowIcon className="text-2xl text-primary" />
-                <h1>Good Service</h1>
+                <p>Search Blood Donor</p>
               </div>
               <div className="flex items-center gap-[1px] text-[18px] font-semibold">
                 <RightDoubleArrowIcon className="text-2xl text-primary" />
-                <h1>24h Service</h1>
+                <h1>Maintain Blood Organization</h1>
               </div>
             </div>
             <div className="flex justify-between items-center">
@@ -61,7 +61,7 @@ export default function AboutBloodBd() {
             <div className="flex justify-between items-center">
               <div className="flex items-center gap-[1px] text-[18px] font-semibold">
                 <RightDoubleArrowIcon className="text-2xl text-primary" />
-                <h1>Hugine Tools</h1>
+                <h1>Track Donation</h1>
               </div>
               <div className="flex items-center gap-[1px] text-[18px] font-semibold">
                 <RightDoubleArrowIcon className="text-2xl text-primary" />

@@ -8,6 +8,7 @@ import Home from "../pages/home/Home";
 import ProtectedRoute from "./ProtectedRoute";
 import SetInformation from "../pages/dashboard/setInformation/SetInformation";
 import SearchDonor from "../pages/Search/SearchDonor";
+import DonorDetails from "../pages/donor/DonorDetails";
 
 const Router = () => {
   return (
@@ -16,6 +17,7 @@ const Router = () => {
         <Route path="/" element={<MainLayout />}>
           <Route index element={<Home />} />
           <Route path="/search" element={<SearchDonor />} />
+          <Route path="/donor/:id" element={<DonorDetails />} />
         </Route>
         <Route path="/auth">
           <Route path="login" element={<Login />} />

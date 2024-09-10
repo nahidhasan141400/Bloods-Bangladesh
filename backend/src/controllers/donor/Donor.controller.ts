@@ -59,4 +59,30 @@ export const DonorController = {
       next(error);
     }
   },
+  async GetDonorById(req, res, next) {
+    try {
+      const { id } = req.body;
+      const data = await db.Donor.findOne({
+        where: {
+          id: id,
+        },
+      });
+      res.send(data);
+    } catch (error) {
+      next(error);
+    }
+  },
+  async SearchDonorNearBy(req, res, next) {
+    try {
+      const { latitude, longitude, distance } = req.query;
+      const data = await DonorService.SearchNearBy(
+        latitude,
+        longitude,
+        distance
+      );
+      res.send(data);
+    } catch (error) {
+      next(error);
+    }
+  },
 };

@@ -10,7 +10,10 @@ const HeroSection: FC<{ user: any }> = ({ user }) => {
     <div className="w-full relative">
       <Container className="grid grid-cols-1 md:grid-cols-2 ">
         {/* CTA */}
-        <div className="w-full flex flex-col justify-center items-center gap-2">
+        <div
+          data-aos="fade-right"
+          className="w-full flex flex-col justify-center items-center gap-2"
+        >
           <img
             src={"/images/logo.png"}
             className="w-52 md:w-72"
@@ -61,9 +64,9 @@ const HeroSection: FC<{ user: any }> = ({ user }) => {
           </div>
         </div>
         {/* image */}
-        <div className="w-full px-3 2xl:px-16 pt-8">
+        <div data-aos="fade-left" className="w-full px-3 2xl:px-16 pt-8">
           <img
-            src={"/images/hero.png"}
+            src={"/images/hero-section.svg"}
             alt="bloods bangladesh"
             className="w-full"
           />

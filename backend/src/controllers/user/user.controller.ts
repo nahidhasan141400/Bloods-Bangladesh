@@ -136,4 +136,14 @@ export const UserController = {
       next(error);
     }
   },
+  async GetLast20(req, res, next) {
+    try {
+      const Data = await db.User.findAll({
+        limit: 20,
+      });
+      res.send(Data);
+    } catch (error) {
+      next(error);
+    }
+  },
 };

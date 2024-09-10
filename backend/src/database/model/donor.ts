@@ -26,6 +26,7 @@ export interface DonorI
   longitude: string;
   latitude: string;
   address: string;
+  coordinates: { type: string; coordinates: string[] };
 
   status: "active" | "deactivate" | "un-verify";
   organization_id?: ForeignKey<string>;
@@ -92,6 +93,10 @@ export function DonorModel(sequelize: Sequelize) {
     },
     latitude: {
       type: DataTypes.STRING,
+      allowNull: true,
+    },
+    coordinates: {
+      type: DataTypes.GEOMETRY("POINT"),
       allowNull: true,
     },
 

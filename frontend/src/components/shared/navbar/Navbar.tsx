@@ -12,9 +12,10 @@ const Navbar = () => {
     <Container className="w-full relative">
       <div className="w-full relative p-3 flex justify-between items-center container mx-auto ">
         <Link to={"/"}>
-          <div className="hidden md:block text-2xl font-bold text-primary">
+          {/* <div className="hidden md:block text-2xl font-bold text-primary">
             BLOODSBD.COM
-          </div>
+          </div> */}
+          <img src="/images/logo/logo-inline.png" className="w-80" />
         </Link>
         {/* right site of the website */}
         <div className="flex w-full justify-between md:justify-end items-center gap-4">
