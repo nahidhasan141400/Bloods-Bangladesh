@@ -9,6 +9,7 @@ import ProtectedRoute from "./ProtectedRoute";
 import SetInformation from "../pages/dashboard/setInformation/SetInformation";
 import SearchDonor from "../pages/Search/SearchDonor";
 import DonorDetails from "../pages/donor/DonorDetails";
+import AdminLayout from "../layouts/AdminLayout";
 
 const Router = () => {
   return (
@@ -26,6 +27,9 @@ const Router = () => {
         </Route>
         <Route path="/dashboard/setup-profile" element={<SetInformation />} />
         <Route path="/dashboard/*" element={<ProtectedRoute />} />
+
+        {/* admin */}
+        <Route path="/we/admin/*" element={<AdminLayout />} />
       </Routes>
     </BrowserRouter>
   );

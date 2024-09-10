@@ -7,7 +7,7 @@ import BecomeOurNextHero from "./BecomeOurNextHero";
 import HeroSection from "./HeroSection";
 import OurHeros from "./OurHeros";
 import { Link } from "react-router-dom";
-import SacrificeSection from "./SacrificeSection";
+// import SacrificeSection from "./SacrificeSection";
 import OurServices from "./OurServices";
 import AboutBloodBd from "./AboutBloodBd";
 // import NearBy from "./NearBy/NearBy";

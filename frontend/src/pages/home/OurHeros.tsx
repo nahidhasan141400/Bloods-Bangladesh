@@ -7,6 +7,7 @@ import "swiper/css";
 import Container from "../../components/ui/Container";
 import { useGet20UserQuery } from "../../redux/api/authApi/authApi";
 import { imagePath } from "../../Utils/Imgpath";
+import { Avatar } from "antd";
 const OurHeros = () => {
   const { data, isLoading } = useGet20UserQuery({});
   console.log("🚀 ~ OurHeros ~ data:", data);
@@ -51,11 +52,18 @@ const OurHeros = () => {
                   className="items-center flex justify-center w-24 md:w-32"
                 >
                   <div className="flex  md:w-32 flex-col w-full  items-center">
-                    <img
-                      className="rounded-full object-cover mb-1 size-24 md:size-32 border-2 border-red-500"
+                    <Avatar
+                      size={100}
+                      className="bg-red-600"
                       src={imagePath.profile(user.photo) || ""}
+                    >
+                      {user?.name[0]}
+                    </Avatar>
+                    {/* <img
+                      className="rounded-full object-cover mb-1 size-24 md:size-32 border-2 border-red-500"
+                     
                       alt="bloodsbd.com"
-                    />
+                    /> */}
                     <h1 className="text-center font-medium">{user?.name}</h1>
                   </div>
                 </SwiperSlide>
