@@ -13,4 +13,14 @@ export const imagePath = {
     }
     return `${proxy}/media/user_photo/${url}`;
   },
+  admin: (url: string | null) => {
+    if (!url) {
+      return null;
+    }
+    const Checker = /^https?:\/\//i.test(url);
+    if (Checker) {
+      return url;
+    }
+    return `${proxy}/media/admin_photo/${url}`;
+  },
 };
