@@ -63,6 +63,18 @@ Donor.belongsTo(User, {
   as: "user",
 });
 
+SuperAdmin.hasMany(Donor, {
+  foreignKey: "admin_id",
+  onDelete: "SET NULL",
+  as: "donor",
+});
+
+Donor.belongsTo(SuperAdmin, {
+  foreignKey: "admin_id",
+  onDelete: "SET NULL",
+  as: "super_admin",
+});
+
 // Country < Division
 
 Country.hasMany<CountryI, DivisionI>(Division, {

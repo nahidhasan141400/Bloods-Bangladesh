@@ -161,4 +161,14 @@ export const UserService = {
       throw error;
     }
   },
+  async GetAllUser() {
+    return await db.User.findAll({
+      include: [
+        {
+          model: db.Donor,
+          as: "donor",
+        },
+      ],
+    });
+  },
 };

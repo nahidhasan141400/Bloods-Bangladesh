@@ -2,10 +2,11 @@
 import { Button, Card, Divider, Form, Input } from "antd";
 import { useLoginAdminMutation } from "../../../redux/api/adminApi/AdminApi";
 import { toast } from "sonner";
+import { useNavigate } from "react-router-dom";
 
 const AdminLogin = () => {
   const [loginMutation, loginMutationOpt] = useLoginAdminMutation();
-
+  const Nav = useNavigate();
   // login
   const Login = async (value: any) => {
     if (loginMutationOpt.isLoading) {
@@ -17,6 +18,7 @@ const AdminLogin = () => {
         return toast.error("Login failed");
       }
       toast.success("Login succeeded");
+      Nav("/we/admin/dashboard");
     } catch (error) {
       console.log("🚀 ~ Login ~ error:", error);
     }

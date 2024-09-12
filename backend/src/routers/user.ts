@@ -1,4 +1,5 @@
 import { UserController } from "@/controllers/user/user.controller";
+import { isAdmin } from "@/middleware/auth/isAdmin";
 import IsUser from "@/middleware/auth/isUser";
 import CreateRouter from "@CreateRoute";
 
@@ -16,5 +17,6 @@ app.get("/verify", IsUser, (req, res) => {
 });
 
 app.get("/20-user", UserController.GetLast20);
+app.get("/all-user", isAdmin, UserController.GetAllUser);
 
 export default MakeRouter;

@@ -3,6 +3,9 @@ import AdminLogin from "../pages/Admin/Auth/AdminLogin";
 import { useGetAdminQuery } from "../redux/api/adminApi/AdminApi";
 import Loading from "../components/Loading/Loading";
 import AdminNavbar from "../components/shared/navbar/AdminNavbar";
+import AdminDashboard from "../pages/Admin/Dashboard/AdminDashboard";
+import User from "../pages/Admin/users/User";
+import Donor from "../pages/Admin/Donor/Donor";
 
 const AdminLayout = () => {
   return (
@@ -28,7 +31,13 @@ const AdminProtectedRoute = () => {
     <>
       <AdminNavbar admin={data} />
       <div className="container mx-auto">
-        <h1>Admin Dashboard</h1>
+        <div>
+          <Routes>
+            <Route index element={<AdminDashboard />} />
+            <Route path="/users" element={<User />} />
+            <Route path="/donor" element={<Donor />} />
+          </Routes>
+        </div>
       </div>
     </>
   );

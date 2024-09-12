@@ -30,6 +30,7 @@ export interface DonorI
 
   status: "active" | "deactivate" | "un-verify";
   organization_id?: ForeignKey<string>;
+  admin_id?: ForeignKey<string>;
   user_id?: ForeignKey<string>;
   createdAt?: Date;
   updatedAt?: Date;

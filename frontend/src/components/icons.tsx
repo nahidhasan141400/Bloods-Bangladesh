@@ -31,6 +31,96 @@ export function LogosGoogleIcon(props: SVGProps<SVGSVGElement>) {
 
 export function RightDoubleArrowIcon(props: SVGProps<SVGSVGElement>) {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" {...props}><path fill="currentColor" d="M6.41 6L5 7.41L9.58 12L5 16.59L6.41 18l6-6z"></path><path fill="currentColor" d="m13 6l-1.41 1.41L16.17 12l-4.58 4.59L13 18l6-6z"></path></svg>
-  )
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="1em"
+      height="1em"
+      viewBox="0 0 24 24"
+      {...props}
+    >
+      <path
+        fill="currentColor"
+        d="M6.41 6L5 7.41L9.58 12L5 16.59L6.41 18l6-6z"
+      ></path>
+      <path
+        fill="currentColor"
+        d="m13 6l-1.41 1.41L16.17 12l-4.58 4.59L13 18l6-6z"
+      ></path>
+    </svg>
+  );
+}
+
+export function MaterialSymbolsDashboard(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="1em"
+      height="1em"
+      viewBox="0 0 24 24"
+      {...props}
+    >
+      <path
+        fill="currentColor"
+        d="M13 9V3h8v6zM3 13V3h8v10zm10 8V11h8v10zM3 21v-6h8v6z"
+      ></path>
+    </svg>
+  );
+}
+
+export function HugeiconsBlood(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="1em"
+      height="1em"
+      viewBox="0 0 24 24"
+      {...props}
+    >
+      <g
+        fill="none"
+        stroke="currentColor"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth="1.5"
+        color="currentColor"
+      >
+        <path d="M5.5 15.5C3.288 14.617 2 12.433 2 10.175C2 7.245 4.317 4.35 5.943 2.68c.883-.908 2.23-.908 3.114 0c.492.505.908 1.122 1.443 1.819M8 14.926c0-3.556 2.949-7.07 5.019-9.1c1.124-1.101 2.838-1.101 3.962 0c2.07 2.03 5.019 5.544 5.019 9.1C22 18.413 19.35 22 15 22s-7-3.587-7-7.074"></path>
+        <path d="M18.5 15.5c0 2.21-1.5 3-3 3"></path>
+      </g>
+    </svg>
+  );
+}
+
+export function IcRoundPerson(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="1em"
+      height="1em"
+      viewBox="0 0 24 24"
+      {...props}
+    >
+      <path
+        fill="currentColor"
+        d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4s-4 1.79-4 4s1.79 4 4 4m0 2c-2.67 0-8 1.34-8 4v1c0 .55.45 1 1 1h14c.55 0 1-.45 1-1v-1c0-2.66-5.33-4-8-4"
+      ></path>
+    </svg>
+  );
+}
+
+export function CarbonSearch(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="1em"
+      height="1em"
+      viewBox="0 0 32 32"
+      {...props}
+    >
+      <path
+        fill="currentColor"
+        d="m29 27.586l-7.552-7.552a11.018 11.018 0 1 0-1.414 1.414L27.586 29ZM4 13a9 9 0 1 1 9 9a9.01 9.01 0 0 1-9-9"
+      ></path>
+    </svg>
+  );
 }

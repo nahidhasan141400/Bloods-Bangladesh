@@ -146,4 +146,12 @@ export const UserController = {
       next(error);
     }
   },
+  async GetAllUser(req, res, next) {
+    try {
+      const Data = await UserService.GetAllUser();
+      res.send(Data);
+    } catch (error) {
+      next(error);
+    }
+  },
 };

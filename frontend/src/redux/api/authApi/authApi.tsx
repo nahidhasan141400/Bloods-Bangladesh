@@ -51,6 +51,15 @@ export const authApi = api.injectEndpoints({
       },
       providesTags: ["user"],
     }),
+    getAllUser: builder.query<any, any>({
+      query: () => {
+        return {
+          url: "/user/all-user",
+          method: "GET",
+        };
+      },
+      providesTags: ["user"],
+    }),
   }),
 });
 
@@ -60,4 +69,5 @@ export const {
   useEmailVerificationMutation,
   useGetUserQuery,
   useGet20UserQuery,
+  useGetAllUserQuery,
 } = authApi;
