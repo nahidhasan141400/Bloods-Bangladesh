@@ -15,6 +15,8 @@ interface DataType {
 type DataIndex = keyof DataType;
 
 const App: React.FC = () => {
+  // @ts-expect-error skip
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [searchText, setSearchText] = useState("");
   const [searchedColumn, setSearchedColumn] = useState("");
   const searchInput = useRef<InputRef>(null);
