@@ -85,4 +85,32 @@ export const DonorController = {
       next(error);
     }
   },
+  async GetAllByAdmin(req, res, next) {
+    try {
+      const Data = await db.Donor.findAll();
+      res.send(Data);
+    } catch (error) {
+      next(error);
+    }
+  },
+  async addByAdmin(req, res, next) {
+    try {
+      const { admin, body } = req;
+      const data = await db.Donor.create({
+        name: body.name,
+        address: body.address,
+        blood_group: body.blood_group,
+        country: body.country,
+        district: body.district,
+        division: body.division,
+        phone: body.phone,
+        upazila: body.upazila,
+        status: "active",
+        admin_id: admin.id,
+      });
+      res.send(data);
+    } catch (error) {
+      next(error);
+    }
+  },
 };

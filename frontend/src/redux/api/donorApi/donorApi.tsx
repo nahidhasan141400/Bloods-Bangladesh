@@ -34,6 +34,28 @@ const donorApi = api.injectEndpoints({
       },
       invalidatesTags: ["user"],
     }),
+
+    AddDonorByAdmin: builder.mutation<any, any>({
+      query: (data) => {
+        return {
+          url: "/donor/add-donor-by-admin",
+          method: "POST",
+          body: data,
+        };
+      },
+      invalidatesTags: ["user"],
+    }),
+
+    GetDonorByAdmin: builder.query<any, any>({
+      query: () => {
+        return {
+          url: "/donor/get-all-by-admin",
+          method: "GET",
+        };
+      },
+      providesTags: ["user"],
+    }),
+
     GetNearBy: builder.query<
       any,
       {
@@ -58,4 +80,6 @@ export const {
   useSearchDonarMutation,
   useGetDonorByIdMutation,
   useGetNearByQuery,
+  useGetDonorByAdminQuery,
+  useAddDonorByAdminMutation,
 } = donorApi;

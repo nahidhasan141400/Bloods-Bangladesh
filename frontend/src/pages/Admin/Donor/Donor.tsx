@@ -1,15 +1,17 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Avatar, Button, Card, Input, Space, Table } from "antd";
 import { imagePath } from "../../../Utils/Imgpath";
-import { useGetAllUserQuery } from "../../../redux/api/authApi/authApi";
+
 import { Link } from "react-router-dom";
 import type { InputRef, TableColumnType } from "antd";
 import { useRef, useState } from "react";
 import type { FilterDropdownProps } from "antd/es/table/interface";
 import { CarbonSearch } from "../../../components/icons";
+import { useGetDonorByAdminQuery } from "../../../redux/api/donorApi/donorApi";
+import AddDonor from "./AddDonor";
 
 const Donor = () => {
-  const { data, isLoading } = useGetAllUserQuery({});
+  const { data, isLoading } = useGetDonorByAdminQuery({});
 
   const [searchedColumn, setSearchedColumn] = useState("");
   const searchInput = useRef<InputRef>(null);
@@ -118,9 +120,12 @@ const Donor = () => {
         <Card
           title="Donor Data"
           extra={
-            <p className="text-xl font-bold text-red-500">
-              Total {data?.length}
-            </p>
+            <div className="flex gap-4">
+              <p className="text-xl font-bold text-red-500">
+                Total {data?.length}
+              </p>
+              <AddDonor />
+            </div>
           }
         >
           <Table
@@ -141,36 +146,37 @@ const Donor = () => {
                 ...getColumnSearchProps("name"),
               },
               {
-                title: "Email",
-                dataIndex: "email",
-                key: "email",
-                ...getColumnSearchProps("email"),
+                title: "Phone",
+                dataIndex: "phone",
+                key: "phone",
+                ...getColumnSearchProps("phone"),
               },
               {
-                title: "Status",
-                dataIndex: "status",
-                key: "status",
-                render: (text) => (
-                  <p className="capitalize font-bold">{text}</p>
-                ),
+                title: "Address",
+                dataIndex: "address",
+                key: "address",
+                ...getColumnSearchProps("address"),
               },
               {
-                title: "Information",
-                dataIndex: "donor",
-                key: "status",
-                render: (_, value) => (
-                  <p className="capitalize font-bold">
-                    {value.donor ? <>YES</> : <>NO</>}
-                  </p>
-                ),
+                title: "Division",
+                dataIndex: "division",
+                key: "division",
+                ...getColumnSearchProps("division"),
               },
+              {
+                title: "District",
+                dataIndex: "district",
+                key: "district",
+                ...getColumnSearchProps("district"),
+              },
+
               {
                 title: "Details",
                 dataIndex: "id",
                 key: "status",
                 render: (id) => (
                   <p className="capitalize font-bold">
-                    <Link to={"/we/admin/dashboard/users/" + id}>
+                    <Link to={"/donor/" + id} target="_blank">
                       <Button>Details</Button>
                     </Link>
                   </p>

@@ -44,7 +44,7 @@ export function DonorModel(sequelize: Sequelize) {
       defaultValue: DataTypes.UUIDV4,
     },
     email: {
-      allowNull: false,
+      allowNull: true,
       type: DataTypes.STRING,
       validate: {
         isEmail: true,
