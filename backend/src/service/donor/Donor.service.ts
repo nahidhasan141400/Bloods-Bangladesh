@@ -56,11 +56,9 @@ export const DonorService = {
     try {
       const radius = distanceInKm * 1000; // Convert km to meters
       const nearbyLocations = await db.sequelize.query(
-        `
-          SELECT *, ST_Distance_Sphere(coordinates, ST_GeomFromText('POINT(:lon :lat)', 4326)) AS distance
+        `SELECT *, ST_Distance_Sphere(POINT(longitude, latitude), POINT(:lon, :lat)) AS distance
           FROM donors
-          HAVING distance <= :radius
-        `,
+          HAVING distance <= :radius`,
         {
           replacements: { lat, lon, radius }, // Replacements for lat, lon, and radius
           model: db.Donor, // Sequelize model to map the result

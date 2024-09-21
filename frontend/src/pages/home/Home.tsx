@@ -10,7 +10,7 @@ import { Link } from "react-router-dom";
 // import SacrificeSection from "./SacrificeSection";
 import OurServices from "./OurServices";
 import AboutBloodBd from "./AboutBloodBd";
-// import NearBy from "./NearBy/NearBy";
+import NearBy from "./NearBy/NearBy";
 
 const Home = () => {
   const { data, isLoading } = useGetUserQuery({});
@@ -38,7 +38,7 @@ const Home = () => {
       <HeroSection user={data} />
       <Banner />
       <OurServices />
-      {/* <NearBy /> */}
+      <NearBy />
       <AboutBloodBd />
       <OurHeros />
       <BecomeOurNextHero />
