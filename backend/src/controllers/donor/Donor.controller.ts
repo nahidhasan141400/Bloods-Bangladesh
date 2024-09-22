@@ -85,6 +85,27 @@ export const DonorController = {
       next(error);
     }
   },
+  async UpdateLocation(req, res, next) {
+    try {
+      const { latitude, longitude } = req.body;
+      const { user } = req;
+
+      const update = await db.Donor.update(
+        {
+          latitude,
+          longitude,
+        },
+        {
+          where: {
+            user_id: user.id,
+          },
+        }
+      );
+      res.send({ update: "update" });
+    } catch (error) {
+      next(error);
+    }
+  },
   async GetAllByAdmin(req, res, next) {
     try {
       const Data = await db.Donor.findAll();

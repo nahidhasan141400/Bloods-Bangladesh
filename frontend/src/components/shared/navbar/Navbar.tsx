@@ -15,7 +15,10 @@ const Navbar = () => {
           {/* <div className="hidden md:block text-2xl font-bold text-primary">
             BLOODSBD.COM
           </div> */}
-          <img src="/images/logo/logo-inline.png" className="w-80" />
+          <img
+            src="/images/logo/logo-inline.png"
+            className="w-80 hidden md:block"
+          />
         </Link>
         {/* right site of the website */}
         <div className="flex w-full justify-between md:justify-end items-center gap-4">

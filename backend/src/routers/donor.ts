@@ -13,5 +13,6 @@ app.post("/get-by-id", DonorController.GetDonorById);
 app.get("/get-near-by", DonorController.SearchDonorNearBy);
 app.get("/get-all-by-admin", isAdmin, DonorController.GetAllByAdmin);
 app.post("/add-donor-by-admin", isAdmin, DonorController.addByAdmin);
+app.post("/update-location", IsUser, DonorController.UpdateLocation);
 
 export default MakeRouter;

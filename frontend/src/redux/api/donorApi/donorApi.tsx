@@ -46,6 +46,17 @@ const donorApi = api.injectEndpoints({
       invalidatesTags: ["user"],
     }),
 
+    UpdateUserLocation: builder.mutation<any, any>({
+      query: (data) => {
+        return {
+          url: "/donor/update-location",
+          method: "POST",
+          body: data,
+        };
+      },
+      invalidatesTags: ["user"],
+    }),
+
     GetDonorByAdmin: builder.query<any, any>({
       query: () => {
         return {
@@ -82,4 +93,5 @@ export const {
   useGetNearByQuery,
   useGetDonorByAdminQuery,
   useAddDonorByAdminMutation,
+  useUpdateUserLocationMutation,
 } = donorApi;

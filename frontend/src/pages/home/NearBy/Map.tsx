@@ -8,6 +8,8 @@ import "leaflet/dist/leaflet.css";
 import L from "leaflet";
 import { Button } from "antd";
 import { Link } from "react-router-dom";
+import { useGetUserQuery } from "../../../redux/api/authApi/authApi";
+import UpdateLocation from "../update_location/UpdateLocation";
 
 // Custom marker icon
 const customIcon = new L.Icon({
@@ -16,15 +18,22 @@ const customIcon = new L.Icon({
   iconAnchor: [0, 70], // point of the icon which will correspond to marker's location
   popupAnchor: [50, -40], // point from which the popup should open relative to the iconAnchor
 });
+const MyIcon = new L.Icon({
+  iconUrl: "/location-mark.png", // provide path to custom marker icon
+  iconSize: [70, 70], // size of the icon
+  iconAnchor: [0, 70], // point of the icon which will correspond to marker's location
+  popupAnchor: [50, -40], // point from which the popup should open relative to the iconAnchor
+});
 
 const Map: FC<{ Location: Location }> = ({ Location }) => {
   const { data } = useGetNearByQuery({
-    distance: "1",
+    distance: "20",
     latitude: `${Location.lat}`,
     longitude: `${Location.lon}`,
   });
 
   const [ctrlPressed, setCtrlPressed] = useState(false);
+  const { data: user, isLoading } = useGetUserQuery({});
 
   useEffect(() => {
     // Function to check if the control key is pressed
@@ -56,6 +65,9 @@ const Map: FC<{ Location: Location }> = ({ Location }) => {
 
   return (
     <div className="max-w-6xl p-5 h-[500px] mx-auto relative">
+      {!isLoading && user && Location.lat && Location.lon && (
+        <UpdateLocation latitude={Location.lat} longitude={Location.lon} />
+      )}
       <h1 className="text-2xl md:text-4xl font-bold text-red-500 text-center pb-3">
         Donor Near You{" "}
       </h1>
@@ -89,6 +101,13 @@ const Map: FC<{ Location: Location }> = ({ Location }) => {
               </Popup>
             </Marker>
           ))}
+        {Location.lat && Location.lon && (
+          <Marker position={[Location.lat, Location.lon]} icon={MyIcon}>
+            <Popup>
+              <h1 className="font-bold">Your Position</h1>
+            </Popup>
+          </Marker>
+        )}
       </MapContainer>
     </div>
   );
